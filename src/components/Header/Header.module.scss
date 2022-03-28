@@ -1,0 +1,55 @@
+.App {
+  background-color: #1a082c;
+}
+.header {
+  color: rgb(204, 204, 216);
+  margin: 0 auto;
+  width: 1170px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__divItems {
+    align-items: center;
+    display: flex;
+    > h2 {
+      margin: 0px 75px 0px 0px;
+      cursor: pointer;
+      color: white;
+      font-size: 30px;
+    }
+    > p {
+      cursor: pointer;
+      padding: 5px 9px;
+      font-size: 18px;
+      margin-left: 5px;
+      &:hover {
+        color: white;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 2px;
+      }
+    }
+    > input {
+      float: right;
+      font-size: 1.2em;
+      border-radius: 15px;
+
+      outline: none;
+      width: 300px;
+      height: 25px;
+      padding: 5px 10px;
+    }
+
+    &_icon {
+      cursor: pointer;
+      padding: 2px 0px 2px 5px;
+      font-size: 25px;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+  .comeInAccount {
+    margin: 0;
+    font-size: 25px;
+  }
+}
