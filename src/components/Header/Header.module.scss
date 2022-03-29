@@ -1,5 +1,7 @@
 .App {
   background-color: #1a082c;
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 8px 0px rgba(43, 7, 102, 0.2);
 }
 .header {
   color: rgb(204, 204, 216);
@@ -28,28 +30,43 @@
         padding-bottom: 2px;
       }
     }
-    > input {
-      float: right;
-      font-size: 1.2em;
+    &_input {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      padding: 3px 10px;
+      width: 330px;
+      height: 35px;
       border-radius: 15px;
-
-      outline: none;
-      width: 300px;
-      height: 25px;
-      padding: 5px 10px;
-    }
-
-    &_icon {
-      cursor: pointer;
-      padding: 2px 0px 2px 5px;
-      font-size: 25px;
-      &:hover {
-        color: white;
+      background-color: white;
+      input {
+        width: 100%;
+        margin-right: 5px;
+        font-size: 1.2em;
+        border-radius: 15px;
+        border: initial;
+        outline: none;
       }
     }
   }
-  .comeInAccount {
-    margin: 0;
-    font-size: 25px;
+}
+.comeInAccount {
+  margin: 0;
+  font-size: 25px;
+}
+.iconProfile {
+  cursor: pointer;
+  padding: 2px 0px 2px 5px;
+  font-size: 25px;
+  &:hover {
+    color: white;
+  }
+}
+.iconSearch {
+  color: #5c595f;
+  font-size: 1.7em;
+  cursor: pointer;
+  &:hover{
+    color: #1a082c;
   }
 }

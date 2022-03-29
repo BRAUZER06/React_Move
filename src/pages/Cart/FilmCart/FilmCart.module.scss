@@ -1,0 +1,52 @@
+.FilmCart {
+  height: 480px;
+  width: 260px;
+  margin-bottom: 10px;
+}
+.content {
+  &__img {
+    cursor: pointer;
+    > img {
+      border-radius: 10px;
+      border: 2px solid rgb(140, 140, 137);
+      box-shadow: 4px 4px 14px 0px rgba(44, 6, 104, 0.6);
+      position: relative;
+      width: 260px;
+      height: 370px;
+      left: 0;
+      top: 0;
+      transition: 0.3s;
+      &:hover {
+        width: 270px;
+
+        left: -5px;
+        top: -10px;
+      }
+    }
+  }
+  &__text {
+    &_name {
+      text-align: center;
+      color: white;
+      > p {
+        display: inline-block;
+        cursor: pointer;
+        font-size: 1.3em;
+        margin: 0px 4px 10px;
+      }
+    }
+    &_genres {
+      padding: 0px 20px 0px 7px;
+      text-align: left;
+      word-wrap: break-word;
+      &_span {
+        width: 260px;
+
+        white-space: nowrap;
+        color: gold;
+        margin-right: 9px;
+        font-size: 1.1em;
+      }
+    }
+  }
+}
