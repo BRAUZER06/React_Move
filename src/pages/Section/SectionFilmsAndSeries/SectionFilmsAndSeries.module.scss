@@ -1,7 +1,17 @@
-.films_container{
+.films {
   margin: 0 auto;
   width: 1200px;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+
+  &_container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  &__pagination{
+    margin: 10px 0px 30px;
+    
+  }
 }

@@ -9,15 +9,15 @@
     > img {
       border-radius: 10px;
       border: 2px solid rgb(140, 140, 137);
-      box-shadow: 4px 4px 14px 0px rgba(44, 6, 104, 0.6);
+      box-shadow: 2px 2px 10px 0px rgba(44, 6, 104, 0.6);
       position: relative;
       width: 260px;
       height: 370px;
       left: 0;
       top: 0;
-      transition: 0.3s;
+      transition: 0.1s;
       &:hover {
-        width: 270px;
+        width: 265px;
 
         left: -5px;
         top: -10px;

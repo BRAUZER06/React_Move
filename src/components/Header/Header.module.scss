@@ -1,9 +1,10 @@
 .App {
   background-color: #1a082c;
   margin-bottom: 20px;
-  box-shadow: 4px 4px 8px 0px rgba(43, 7, 102, 0.2);
+  box-shadow: 4px 4px 10px 0px rgba(43, 7, 102, 0.3);
 }
 .header {
+  height: 65px;
   color: rgb(204, 204, 216);
   margin: 0 auto;
   width: 1170px;
@@ -13,24 +14,29 @@
   &__divItems {
     align-items: center;
     display: flex;
-    > h2 {
+    &_h2 {
       margin: 0px 75px 0px 0px;
       cursor: pointer;
       color: white;
       font-size: 30px;
+      text-decoration: none;
+     
     }
-    > p {
+    &_p {
+      text-decoration: none;
+      color: #d2ccd8;
       cursor: pointer;
       padding: 5px 9px;
       font-size: 18px;
       margin-left: 5px;
       &:hover {
-        color: white;
+        color: rgb(255, 255, 255);
         border-bottom: 1px solid #fff;
         padding-bottom: 2px;
       }
     }
     &_input {
+      
       align-items: center;
       display: flex;
       justify-content: space-between;
@@ -38,12 +44,15 @@
       width: 330px;
       height: 35px;
       border-radius: 15px;
-      background-color: white;
+      color: white;
+      background-color: #250a41;
       input {
+        background-color: #250a41;
+        color: white;
         width: 100%;
-        margin-right: 5px;
+        margin-right: 10px;
         font-size: 1.2em;
-        border-radius: 15px;
+        border-radius: 5px;
         border: initial;
         outline: none;
       }
@@ -63,10 +72,10 @@
   }
 }
 .iconSearch {
-  color: #5c595f;
+  color: #c2b9ca;
   font-size: 1.7em;
   cursor: pointer;
   &:hover{
-    color: #1a082c;
+    color: #ffffff;
   }
 }

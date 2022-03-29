@@ -7,13 +7,15 @@ import SectionProfile from "./SectionProfile/SectionProfile";
 import SectionTrailer from "./SectionTrailer/SectionTrailer";
 
 const Section = () => {
+ 
   return (
     <div className={styles.Section}>
       <Routes>
-        <Route path="/" element={<SectionFilmsAndSeries />} />
-        <Route path="/SectionPremiere" element={<SectionPremiere />} />
-        <Route path="/SectionProfile" element={<SectionProfile />} />
-        <Route path="/SectionTrailer" element={<SectionTrailer />} />
+        <Route path="/Home" element={<SectionFilmsAndSeries  />} />
+        <Route path="/FilmsAndSeries" element={<SectionFilmsAndSeries />} />
+        <Route path="/Trailer" element={<SectionTrailer />} />
+        <Route path="/Premiere" element={ <SectionPremiere />} />
+        <Route path="/Profile" element={<SectionProfile /> }/>
       </Routes>
     </div>
   );

@@ -1,6 +1,9 @@
-body,html{
-  background-color: #200738;
+body{
+  background: rgb(53,7,56);
+background: linear-gradient(101deg, rgba(53,7,56,1) 1%, rgba(32,7,56,1) 27%, rgba(17,10,53,1) 36%, rgba(46,29,36,1) 85%, rgba(38,8,66,1) 100%);
+background-position: 0 0;
 
+background-size: cover;
 }
 .App {
   text-align: center;

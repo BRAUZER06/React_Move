@@ -4,8 +4,7 @@ import styles from "./FilmCart.module.scss";
 const FilmCart = ({ ...props }) => {
   // const [openCartInfoFilm, setOpenCartInfoFilm]=React.useState(false)
   const { posterUrlPreview, genres, nameRu } = props;
-  console.log(props);
-  console.log(nameRu);
+
   const onClickFilmCart=()=>{
     
   }
