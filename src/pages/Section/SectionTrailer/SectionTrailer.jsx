@@ -4,12 +4,15 @@ import { instance } from "../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import Pagination from "@mui/material/Pagination";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
+import Stack from "@mui/material/Stack";
 
 const SectionTrailer = () => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetch, setFetch] = React.useState([]);
-  const [numberPagination, setNumberPagination]=React.useState(1)
-
+  const [numberPagination, setNumberPagination] = React.useState(1);
+  const onClickPaginateNumber = (e) => {
+    setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
+  };
   React.useEffect(() => {
     setIsLoading(true);
     const getFunc = async () => {
@@ -30,21 +33,22 @@ const SectionTrailer = () => {
 
   return (
     <div className={styles.films}>
-      <Pagination
-        className={styles.films__pagination}
-        count={10}
-        variant="outlined"
-        shape="rounded"
-        color="secondary"
-        hidePrevButton
-        hideNextButton
-      />
+      <Stack onClick={onClickPaginateNumber}>
+        <Pagination
+          className={styles.films__pagination}
+          count={10}
+          variant="outlined"
+          shape="rounded"
+          color="secondary"
+          hidePrevButton
+          hideNextButton
+        />
+      </Stack>
       <div className={styles.films_container}>
         {fetch.map((e) => (
           <FilmCart key={e.filmId} {...e} />
         ))}
       </div>
-      
     </div>
   );
 };
