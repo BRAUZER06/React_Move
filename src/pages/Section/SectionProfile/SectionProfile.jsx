@@ -41,7 +41,7 @@ const SectionProfile = () => {
       </h2>
       <h2>
         <FaMailBulk />
-        <a href="#">meda.oziev@mail.ru</a>
+        <a href="#!">meda.oziev@mail.ru</a>
       </h2>
     </div>
   );

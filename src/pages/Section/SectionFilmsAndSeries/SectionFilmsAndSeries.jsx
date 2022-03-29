@@ -5,6 +5,7 @@ import FilmCart from "../../Cart/FilmCart/FilmCart";
 import Pagination from "@mui/material/Pagination";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import Stack from "@mui/material/Stack";
+import ModalWindow from '../../Modal/ModalWindow'
 
 const SectionFilmsAndSeries = () => {
   const [isLoaing, setIsLoading] = React.useState(false);
@@ -41,6 +42,7 @@ const SectionFilmsAndSeries = () => {
           hideNextButton
         />
       </Stack>
+      {/* <ModalWindow/> */}
       <div className={styles.films_container}>
         {fetch.map((e) => (
           <FilmCart key={e.filmId} {...e} />

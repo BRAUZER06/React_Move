@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack";
 const SectionPremiere = () => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetch, setFetch] = React.useState([]);
-  const [numberPagination, setNumberPagination] = React.useState(1);
+  const [numberPagination, setNumberPagination] = React.useState(7);
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
