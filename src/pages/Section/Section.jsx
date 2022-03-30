@@ -15,7 +15,13 @@ const Section = () => {
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
-        <Pagination numberPagination={numberPagination} onClickPaginateNumber={onClickPaginateNumber} />
+        {/* Только после перезагрузки срабатывает ( убирают пагинацию когда ты в профиле) */}
+        {window.location.pathname !== "/Profile" && (
+          <Pagination
+            numberPagination={numberPagination}
+            onClickPaginateNumber={onClickPaginateNumber}
+          />
+        )}
       </div>
 
       <Routes>

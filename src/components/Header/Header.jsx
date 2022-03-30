@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Header.module.scss";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import classNames from "classname";
 const Header = () => {
   const [inputSearchValue, setInputSearchValue] = React.useState("");
 
@@ -14,9 +15,9 @@ const Header = () => {
     // делать setInputChecked(false если нажатии было за пределы инпута чтобы его закрвать )
     setInputChecked(true);
   };
-  const onClickCloseInput = ()=>{
+  const onClickCloseInput = () => {
     setInputChecked(false);
-  }
+  };
 
   console.log(inputChecked);
   const onClicHome = () => {};
@@ -65,7 +66,12 @@ const Header = () => {
           )}
         </div>
         <div className={styles.header__divItems}>
-          <div className={styles.header__divItems_input}>
+          <div
+            className={classNames(
+              styles.header__divItems_inputDiv,
+              inputChecked && styles.header__divItems_inputDiv_checked
+            )}
+          >
             <input
               onClick={onClickInputSearch}
               checked={inputChecked}
@@ -73,11 +79,20 @@ const Header = () => {
               onChange={onChangeInputSearch}
               type="text"
               placeholder="Поиск..."
+              className={classNames(
+                styles.header__divItems_inputDiv_input,
+                inputChecked && styles.header__divItems_inputDiv_input_checked
+              )}
             />
-            <FaSearch onClick={onClickInputSearch} className={styles.iconSearch} />
+            <FaSearch
+              onClick={onClickInputSearch}
+              className={styles.iconSearch}
+            />
           </div>
         </div>
-        {inputChecked && <FaPlus onClick={onClickCloseInput} className={styles.iconXmark} />}
+        {inputChecked && (
+          <FaPlus onClick={onClickCloseInput} className={styles.iconXmark} />
+        )}
         <div className={styles.header__divItems}>
           <FaRegUserCircle
             onClick={onClickProfile}
