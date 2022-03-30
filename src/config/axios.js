@@ -1,7 +1,7 @@
 import axios from "axios";
 export const instance = axios.create({
   headers: {
-    "X-API-KEY": "a1c914cf-84d4-40d4-a8e0-bd9bfedbf02b",
+    "X-API-KEY": "8c8e1a50-6322-4135-8875-5d40a5420d86",
     "Content-Type": "application/json",
   },
 });
