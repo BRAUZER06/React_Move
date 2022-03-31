@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./SectionPremiere.module.scss";
 import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
-
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
 const SectionPremiere = ({ numberPagination, onClickPaginateNumber }) => {

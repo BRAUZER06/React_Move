@@ -3,7 +3,6 @@ import styles from "./SectionFilmsAndSeries.module.scss";
 import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
-
 import ModalWindow from '../../Modal/ModalWindow'
 
 const SectionFilmsAndSeries = ({numberPagination}) => {
