@@ -12,7 +12,7 @@ const Header = () => {
   const inputSearchValue = useSelector((state) => state.header.inputValue);
 
   //временно
-  const [inputChecked, setInputChecked] = React.useState(false);
+  const [inputChecked, setInputChecked] = React.useState(true);
 
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValue(e.target.value));

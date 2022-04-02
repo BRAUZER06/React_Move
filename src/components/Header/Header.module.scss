@@ -20,7 +20,10 @@
       color: white;
       font-size: 30px;
       text-decoration: none;
-     
+      transition: 0.2s;
+     &:hover{
+       color: #5400a7;
+     }
     }
     &_p {
       text-decoration: none;
@@ -97,4 +100,8 @@
   font-size: 2.2em;
   transform: rotate(45deg);
   cursor: pointer;
+  transition: 0.2s;
+  &:hover{
+    color: rgb(255, 72, 72);
+  }
 }
