@@ -5,7 +5,11 @@ import FilmCart from "../../Cart/FilmCart/FilmCart";
 
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
-const SectionTrailer = ({ numberPagination, onClickPaginateNumber }) => {
+const SectionTrailer = ({
+  numberPagination,
+  onClickPaginateNumber,
+  inputSearchValue,
+}) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchTrailer, setFetchTrailer] = React.useState([]);
 
@@ -33,9 +37,13 @@ const SectionTrailer = ({ numberPagination, onClickPaginateNumber }) => {
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
-        {fetchTrailer.map((e) => (
-          <FilmCart key={e.filmId} {...e} />
-        ))}
+        {fetchTrailer
+          .filter((item) =>
+            item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
+          )
+          .map((e) => (
+            <FilmCart key={e.filmId} {...e} />
+          ))}
       </div>
     </div>
   );

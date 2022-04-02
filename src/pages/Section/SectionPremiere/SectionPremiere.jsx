@@ -4,7 +4,7 @@ import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
-const SectionPremiere = ({ numberPagination, onClickPaginateNumber }) => {
+const SectionPremiere = ({ numberPagination, onClickPaginateNumber,inputSearchValue }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchPremiere, setFetchPremiere] = React.useState([]);
 
@@ -30,9 +30,13 @@ const SectionPremiere = ({ numberPagination, onClickPaginateNumber }) => {
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
-        {fetchPremiere.map((e) => (
-          <FilmCart key={e.filmId} {...e} />
-        ))}
+      {fetchPremiere
+          .filter((item) =>
+            item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
+          )
+          .map((e) => (
+            <FilmCart key={e.filmId} {...e} />
+          ))}
       </div>
     </div>
   );

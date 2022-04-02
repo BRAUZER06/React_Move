@@ -1,23 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Section.module.scss";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
 import SectionPremiere from "./SectionPremiere/SectionPremiere";
 import SectionProfile from "./SectionProfile/SectionProfile";
 import SectionTrailer from "./SectionTrailer/SectionTrailer";
 import Pagination from "../Pagination/Pagination";
+import { useSelector } from "react-redux";
 
 const Section = () => {
+  const {pathname} = useLocation()
+  
   const [numberPagination, setNumberPagination] = React.useState(6);
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
+ 
+  
+
+  const inputSearchValue = useSelector((state) => state.header.inputValue);
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
         {/* Только после перезагрузки срабатывает ( убирают пагинацию когда ты в профиле) */}
-        {window.location.pathname !== "/Profile" && (
+        {pathname !=='/Profile' && (
           <Pagination
+          
             numberPagination={numberPagination}
             onClickPaginateNumber={onClickPaginateNumber}
           />
@@ -29,6 +37,7 @@ const Section = () => {
           path="/Home"
           element={
             <SectionFilmsAndSeries
+              inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
@@ -38,6 +47,7 @@ const Section = () => {
           path="/FilmsAndSeries"
           element={
             <SectionFilmsAndSeries
+              inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
@@ -47,6 +57,7 @@ const Section = () => {
           path="/Trailer"
           element={
             <SectionTrailer
+              inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
@@ -56,6 +67,7 @@ const Section = () => {
           path="/Premiere"
           element={
             <SectionPremiere
+              inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
@@ -65,6 +77,8 @@ const Section = () => {
           path="/Profile"
           element={
             <SectionProfile
+           
+
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />

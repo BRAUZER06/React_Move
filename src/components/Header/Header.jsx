@@ -3,14 +3,21 @@ import styles from "./Header.module.scss";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import classNames from "classname";
+import { useDispatch, useSelector } from "react-redux";
+import { headerInputValue } from "../../redux/action/headerAction";
+import GlobalSearchInput from "../../pages/Cart/GlobalSearchInput/GlobalSearchInput";
+
 const Header = () => {
-  const [inputSearchValue, setInputSearchValue] = React.useState("");
+  const dispatch = useDispatch();
+  const inputSearchValue = useSelector((state) => state.header.inputValue);
 
   //временно
   const [inputChecked, setInputChecked] = React.useState(false);
+
   const onChangeInputSearch = (e) => {
-    setInputSearchValue(e.target.value);
+    dispatch(headerInputValue(e.target.value));
   };
+
   const onClickInputSearch = (e) => {
     // делать setInputChecked(false если нажатии было за пределы инпута чтобы его закрвать )
     setInputChecked(true);
@@ -19,7 +26,7 @@ const Header = () => {
     setInputChecked(false);
   };
 
-  console.log(inputChecked);
+  console.log(inputSearchValue);
   const onClicHome = () => {};
   const onClickFilmsAndSeries = () => {};
   const onClickTrailer = () => {};
@@ -65,6 +72,12 @@ const Header = () => {
             </>
           )}
         </div>
+        {inputChecked && (
+          <div className={styles.header__divItems_globalSearch}>
+            <GlobalSearchInput />
+          </div>
+        )}
+
         <div className={styles.header__divItems}>
           <div
             className={classNames(
