@@ -15,7 +15,7 @@ const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
       (async () => {
         const res = await instance
           .get(
-            `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`
+            `/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`
           )
           .then((respons) => setFetchFilmAndSeries(respons.data.films));
         setIsLoading(false);

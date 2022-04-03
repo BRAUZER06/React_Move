@@ -19,7 +19,7 @@ const SectionTrailer = ({
       (async () => {
         const res = await instance
           .get(
-            `https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`
+            `/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`
           )
           .then((respons) => setFetchTrailer(respons.data.films));
         setIsLoading(false);

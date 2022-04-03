@@ -4,18 +4,12 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { instance } from "../../../config/axios";
 import classNames from "classname";
-import {
-  globalSerachValueAction,
-  getGlobalSerachAction,
-} from "../../../redux/action/globalSearchFilterAction";
+import { globalSeracFilms } from "../../../redux/action/globalSearchFilterAction";
 
 const GlobalSearchFilter = () => {
   const dispatch = useDispatch();
-  const films = useSelector((state)=>state.globalSearch.films)
-  const fetchValueInput = useSelector((state)=>state.globalSearch.fetchValueInput)
-  console.log(fetchValueInput);
- 
-  const [inputsGlobalValue, setInputsGlovalValue] = React.useState({
+
+  const [params, serParams] = React.useState({
     sortFilms: "",
     tipeFilms: "",
     minRating: "",
@@ -24,43 +18,25 @@ const GlobalSearchFilter = () => {
     maxYear: "",
     keyword: "",
   });
-  console.log(inputsGlobalValue);
-  const [getFilmsGlobalFilterArr, setGetFilmsGlobalFilterArr] = React.useState(
-    []
-  );
-  const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(true);
+
+  const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(false);
 
   const getFilmsFilter = () => {
-    dispatch(globalSerachValueAction(inputsGlobalValue))
-    dispatch(getGlobalSerachAction())
     try {
       (async () => {
-        const res = instance
+        const res = await instance
           .get(
-            `https://kinopoiskapiunofficial.tech/api/v2.2/films?${
-              inputsGlobalValue.sortFilms.length &&
-              `order=${inputsGlobalValue.sortFilms}`
-            }${
-              inputsGlobalValue.tipeFilms.length &&
-              `&type=${inputsGlobalValue.tipeFilms}`
-            }${
-              inputsGlobalValue.minRating.length &&
-              `&ratingFrom=${inputsGlobalValue.minRating}`
-            }${
-              inputsGlobalValue.maxRating.length &&
-              `&ratingTo=${inputsGlobalValue.maxRating}`
-            }${
-              inputsGlobalValue.minYear.length &&
-              `&yearFrom=${inputsGlobalValue.minYear}`
-            }${
-              inputsGlobalValue.maxYear.length &&
-              `&yearTo=${inputsGlobalValue.maxYear}`
-            }${
-              inputsGlobalValue.keyword.length &&
-              `&keyword=${inputsGlobalValue.keyword}`
+            `/films?${
+              params.sortFilms.length && `order=${params.sortFilms}`
+            }${params.tipeFilms.length && `&type=${params.tipeFilms}`}${
+              params.minRating.length && `&ratingFrom=${params.minRating}`
+            }${params.maxRating.length && `&ratingTo=${params.maxRating}`}${
+              params.minYear.length && `&yearFrom=${params.minYear}`
+            }${params.maxYear.length && `&yearTo=${params.maxYear}`}${
+              params.keyword.length && `&keyword=${params.keyword}`
             }&page=1`
           )
-          .then((respons) => setGetFilmsGlobalFilterArr(respons.data.items));
+          .then((respons) => dispatch(globalSeracFilms(respons.data.items)));
       })();
     } catch (error) {
       alert("Фильтр не работает");
@@ -74,7 +50,7 @@ const GlobalSearchFilter = () => {
 
   const inputFilterGlobalValue = (e) => {
     const { value, name } = e.target;
-    setInputsGlovalValue({ ...inputsGlobalValue, [name]: value });
+    serParams({ ...params, [name]: value });
   };
 
   return (
@@ -102,7 +78,7 @@ const GlobalSearchFilter = () => {
                 <p>Сортировка по</p>
                 <input
                   name="sortFilms"
-                  value={inputsGlobalValue.sortFilms}
+                  value={params.sortFilms}
                   onChange={inputFilterGlobalValue}
                   placeholder="Сортировка по:"
                   type="text"
@@ -123,7 +99,7 @@ const GlobalSearchFilter = () => {
                 <p>Тип Фильма:</p>
                 <input
                   name="tipeFilms"
-                  value={inputsGlobalValue.tipeFilms}
+                  value={params.tipeFilms}
                   onChange={inputFilterGlobalValue}
                   placeholder="Тип фильма:"
                   type="text"
@@ -139,7 +115,7 @@ const GlobalSearchFilter = () => {
                 <p>минимальный рейтинг</p>
                 <input
                   name="minRating"
-                  value={inputsGlobalValue.minRating}
+                  value={params.minRating}
                   onChange={inputFilterGlobalValue}
                   minLength={0}
                   placeholder="0"
@@ -150,7 +126,7 @@ const GlobalSearchFilter = () => {
                 <p>максимальный рейтинг</p>
                 <input
                   name="maxRating"
-                  value={inputsGlobalValue.maxRating}
+                  value={params.maxRating}
                   onChange={inputFilterGlobalValue}
                   maxLength={10}
                   placeholder="10"
@@ -160,7 +136,7 @@ const GlobalSearchFilter = () => {
               <div className={styles.GlobalSearchInput__inputs}>
                 <p>инимальный год</p>
                 <input
-                  value={inputsGlobalValue.minYear}
+                  value={params.minYear}
                   name="minYear"
                   onChange={inputFilterGlobalValue}
                   minLength={1000}
@@ -171,7 +147,7 @@ const GlobalSearchFilter = () => {
               <div className={styles.GlobalSearchInput__inputs}>
                 <p>максимальный год</p>
                 <input
-                  value={inputsGlobalValue.maxYear}
+                  value={params.maxYear}
                   name="maxYear"
                   onChange={inputFilterGlobalValue}
                   maxLength={3000}
@@ -183,7 +159,7 @@ const GlobalSearchFilter = () => {
                 <p>ключевое слово в фильме </p>
                 <input
                   name="keyword"
-                  value={inputsGlobalValue.keyword}
+                  value={params.keyword}
                   onChange={inputFilterGlobalValue}
                   minLength={1}
                   placeholder="ключевое слово"

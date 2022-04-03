@@ -7,6 +7,6 @@ export const headerReducer = (state = initState, action) => {
     case "HEADER_INPUT_VALUE":
       return { ...state, inputValue: action.payload };
     default:
-      return state
+      return state;
   }
 };

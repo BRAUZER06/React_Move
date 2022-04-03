@@ -34,7 +34,7 @@ const Section = () => {
 
       <Routes>
         <Route
-          path="/Home"
+          path="/"
           element={
             <SectionFilmsAndSeries
               inputSearchValue={inputSearchValue}
