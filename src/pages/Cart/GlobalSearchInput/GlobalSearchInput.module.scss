@@ -12,6 +12,9 @@
     &:hover {
       color: aqua;
     }
+    &_active {
+      color: aqua;
+    }
   }
   &__filterMove {
     border-radius: 15px;
@@ -29,13 +32,17 @@
     &__content {
       padding: 0px 5px;
     }
-    &_button{
+    &_button {
+      cursor: pointer;
       color: white;
       background-color: rgba(164, 74, 254, 0.9);
       border-radius: 10px;
       padding: 7px 50px 7px;
       margin-bottom: 10px;
       margin-top: 5px;
+      &:hover {
+        background-color: rgba(135, 40, 231, 0.9);
+      }
     }
   }
 
@@ -58,9 +65,8 @@
     }
     > p {
       margin-bottom: 3px;
-
     }
-    &_list{
+    &_list {
       width: 200px;
     }
   }

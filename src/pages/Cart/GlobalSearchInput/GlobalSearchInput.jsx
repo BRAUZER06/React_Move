@@ -26,15 +26,38 @@ const GlobalSearchInput = () => {
       (async () => {
         const res = instance
           .get(
-            "https://kinopoiskapiunofficial.tech/api/v2.2/films?order=RATING&type=ALL&ratingFrom=0&ratingTo=10&yearFrom=1000&yearTo=3000&page=1"
+            // "https://kinopoiskapiunofficial.tech/api/v2.2/films?ratingFrom=1&ratingTo=2&yearFrom=2000&yearTo=3000&keyword=parker&page=1"
+            `https://kinopoiskapiunofficial.tech/api/v2.2/films?${
+              inputsGlobalValue.sortFilms.length &&
+              `order=${inputsGlobalValue.sortFilms}`
+            }${
+              inputsGlobalValue.tipeFilms.length &&
+              `&type=${inputsGlobalValue.tipeFilms}`
+            }${
+              inputsGlobalValue.minRating.length &&
+              `&ratingFrom=${inputsGlobalValue.minRating}`
+            }${
+              inputsGlobalValue.maxRating.length &&
+              `&ratingTo=${inputsGlobalValue.maxRating}`
+            }${
+              inputsGlobalValue.minYear.length &&
+              `&yearFrom=${inputsGlobalValue.minYear}`
+            }${
+              inputsGlobalValue.maxYear.length &&
+              `&yearTo=${inputsGlobalValue.maxYear}`
+            }${
+              inputsGlobalValue.keyword.length &&
+              `&keyword=${inputsGlobalValue.keyword}`
+            }&page=1`
           )
-          .then((respons) => setGetFilmsGlobalFilterArr(respons.data));
+          .then((respons) => setGetFilmsGlobalFilterArr(respons.data.items));
       })();
     } catch (error) {
       alert("Фильтр не работает");
       console.log(error);
     }
   };
+
   console.log(getFilmsGlobalFilterArr);
 
   const onClickGlobalSearch = () => {
