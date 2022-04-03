@@ -1,11 +1,20 @@
 import React from "react";
-import styles from "./GlobalSearchInput.module.scss";
+import styles from "./GlobalSearchFilter.module.scss";
 import { FaGlobeAmericas } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { instance } from "../../../config/axios";
 import classNames from "classname";
-const GlobalSearchInput = () => {
-  const inputVlueSearch = useSelector((state) => state.header.inputValue);
+import {
+  globalSerachValueAction,
+  getGlobalSerachAction,
+} from "../../../redux/action/globalSearchFilterAction";
+
+const GlobalSearchFilter = () => {
+  const dispatch = useDispatch();
+  const films = useSelector((state)=>state.globalSearch.films)
+  const fetchValueInput = useSelector((state)=>state.globalSearch.fetchValueInput)
+  console.log(fetchValueInput);
+ 
   const [inputsGlobalValue, setInputsGlovalValue] = React.useState({
     sortFilms: "",
     tipeFilms: "",
@@ -22,11 +31,12 @@ const GlobalSearchInput = () => {
   const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(true);
 
   const getFilmsFilter = () => {
+    dispatch(globalSerachValueAction(inputsGlobalValue))
+    dispatch(getGlobalSerachAction())
     try {
       (async () => {
         const res = instance
           .get(
-            // "https://kinopoiskapiunofficial.tech/api/v2.2/films?ratingFrom=1&ratingTo=2&yearFrom=2000&yearTo=3000&keyword=parker&page=1"
             `https://kinopoiskapiunofficial.tech/api/v2.2/films?${
               inputsGlobalValue.sortFilms.length &&
               `order=${inputsGlobalValue.sortFilms}`
@@ -57,8 +67,6 @@ const GlobalSearchInput = () => {
       console.log(error);
     }
   };
-
-  console.log(getFilmsGlobalFilterArr);
 
   const onClickGlobalSearch = () => {
     setCheckGlobalSearch((checkGlobalSearch) => !checkGlobalSearch);
@@ -196,4 +204,4 @@ const GlobalSearchInput = () => {
   );
 };
 
-export default GlobalSearchInput;
+export default GlobalSearchFilter;

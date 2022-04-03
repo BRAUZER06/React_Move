@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import classNames from "classname";
 import { useDispatch, useSelector } from "react-redux";
 import { headerInputValue } from "../../redux/action/headerAction";
-import GlobalSearchInput from "../../pages/Cart/GlobalSearchInput/GlobalSearchInput";
+import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -74,7 +74,7 @@ const Header = () => {
         </div>
         {inputChecked && (
           <div className={styles.header__divItems_globalSearch}>
-            <GlobalSearchInput />
+            <GlobalSearchFilter />
           </div>
         )}
 
