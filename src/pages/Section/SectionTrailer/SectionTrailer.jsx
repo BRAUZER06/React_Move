@@ -18,9 +18,7 @@ const SectionTrailer = ({
     try {
       (async () => {
         const res = await instance
-          .get(
-            `/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`
-          )
+          .get(`/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`)
           .then((respons) => setFetchTrailer(respons.data.films));
         setIsLoading(false);
       })();

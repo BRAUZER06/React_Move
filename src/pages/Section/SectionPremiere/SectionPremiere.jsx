@@ -4,7 +4,11 @@ import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
-const SectionPremiere = ({ numberPagination, onClickPaginateNumber,inputSearchValue }) => {
+const SectionPremiere = ({
+  numberPagination,
+  onClickPaginateNumber,
+  inputSearchValue,
+}) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchPremiere, setFetchPremiere] = React.useState([]);
 
@@ -13,9 +17,7 @@ const SectionPremiere = ({ numberPagination, onClickPaginateNumber,inputSearchVa
     try {
       (async () => {
         const res = await instance
-          .get(
-            `/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`
-          )
+          .get(`/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`)
           .then((respons) => setFetchPremiere(respons.data.films));
         setIsLoading(false);
       })();
@@ -24,13 +26,14 @@ const SectionPremiere = ({ numberPagination, onClickPaginateNumber,inputSearchVa
       console.log(error);
     }
   }, [numberPagination]);
+  
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
-      {fetchPremiere
+        {fetchPremiere
           .filter((item) =>
             item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
           )

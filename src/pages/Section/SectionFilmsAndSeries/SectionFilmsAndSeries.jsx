@@ -4,7 +4,7 @@ import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import ModalWindow from "../../Modal/ModalWindow";
-
+// Добавить модальное окно
 const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
@@ -14,9 +14,7 @@ const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
     try {
       (async () => {
         const res = await instance
-          .get(
-            `/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`
-          )
+          .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
           .then((respons) => setFetchFilmAndSeries(respons.data.films));
         setIsLoading(false);
       })();
@@ -24,14 +22,13 @@ const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
       alert("Ошибка при получении Фильмов");
       console.log(error);
     }
-
-   
   }, [numberPagination]);
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
   return (
     <div className={styles.films}>
+      {/* Сделать модалку */}
       {/* <ModalWindow/> */}
       <div className={styles.films_container}>
         {fetchFilmAndSeries

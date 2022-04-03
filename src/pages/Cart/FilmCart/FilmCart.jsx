@@ -3,9 +3,7 @@ import styles from "./FilmCart.module.scss";
 import classNames from "classname";
 
 const FilmCart = ({ ...props }) => {
-  // const [openCartInfoFilm, setOpenCartInfoFilm]=React.useState(false)
   const { posterUrlPreview, genres, nameRu, year } = props;
-
 
   const onClickFilmCart = () => {};
   return (
@@ -27,10 +25,9 @@ const FilmCart = ({ ...props }) => {
           </div>
         </div>
         <div className={styles.content__data}>
-        <p className={classNames(styles.content__data_p)}>{year}</p>
+          <p className={classNames(styles.content__data_p)}>{year}</p>
+        </div>
       </div>
-      </div>
-      
     </div>
   );
 };

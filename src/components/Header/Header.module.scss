@@ -21,9 +21,9 @@
       font-size: 30px;
       text-decoration: none;
       transition: 0.2s;
-     &:hover{
-       color: #5400a7;
-     }
+      &:hover {
+        color: #5400a7;
+      }
     }
     &_p {
       text-decoration: none;
@@ -39,7 +39,6 @@
       }
     }
     &_inputDiv {
-      
       align-items: center;
       display: flex;
       justify-content: space-between;
@@ -49,14 +48,13 @@
       border-radius: 15px;
       color: white;
       background-color: #250a41;
-      
+
       transition: 0.9s;
-      &_checked{
+      &_checked {
         width: 600px;
         background-color: #1a082c;
       }
       &_input {
-       
         background-color: #250a41;
         color: white;
         width: 100%;
@@ -67,7 +65,7 @@
         outline: none;
         border-radius: 15px;
         padding: 5px 10px;
-        &_checked{
+        &_checked {
           border: 2px solid rgb(154, 39, 39);
           background-color: #1a082c;
         }
@@ -91,17 +89,16 @@
   color: #c2b9ca;
   font-size: 1.7em;
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: #ffffff;
   }
-  
 }
-.iconXmark{
+.iconXmark {
   font-size: 2.2em;
   transform: rotate(45deg);
   cursor: pointer;
   transition: 0.2s;
-  &:hover{
+  &:hover {
     color: rgb(255, 72, 72);
   }
 }

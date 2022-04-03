@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "./GlobalSearchFilter.module.scss";
 import { FaGlobeAmericas } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { instance } from "../../../config/axios";
 import classNames from "classname";
 import { globalSeracFilms } from "../../../redux/action/globalSearchFilterAction";
 
 const GlobalSearchFilter = () => {
   const dispatch = useDispatch();
-
+  const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(false);
   const [params, serParams] = React.useState({
-    sortFilms: "",
-    tipeFilms: "",
+    sort: "",
+    tipe: "",
     minRating: "",
     maxRating: "",
     minYear: "",
@@ -19,24 +19,22 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(false);
-
+  //найти алтернативу этому аду
   const getFilmsFilter = () => {
     try {
       (async () => {
         const res = await instance
           .get(
-            `/films?${
-              params.sortFilms.length && `order=${params.sortFilms}`
-            }${params.tipeFilms.length && `&type=${params.tipeFilms}`}${
-              params.minRating.length && `&ratingFrom=${params.minRating}`
-            }${params.maxRating.length && `&ratingTo=${params.maxRating}`}${
-              params.minYear.length && `&yearFrom=${params.minYear}`
-            }${params.maxYear.length && `&yearTo=${params.maxYear}`}${
-              params.keyword.length && `&keyword=${params.keyword}`
-            }&page=1`
+            `/films?${params.sort.length && `order=${params.sort}`}${
+              params.tipe.length && `&type=${params.tipe}`
+            }${params.minRating.length && `&ratingFrom=${params.minRating}`}${
+              params.maxRating.length && `&ratingTo=${params.maxRating}`
+            }${params.minYear.length && `&yearFrom=${params.minYear}`}${
+              params.maxYear.length && `&yearTo=${params.maxYear}`
+            }${params.keyword.length && `&keyword=${params.keyword}`}&page=1`
           )
-          .then((respons) => dispatch(globalSeracFilms(respons.data.items)));
+          .then((respons) => dispatch(globalSeracFilms(respons.data.items)))
+          .then((respon) => console.log(respon));
       })();
     } catch (error) {
       alert("Фильтр не работает");
@@ -77,8 +75,8 @@ const GlobalSearchFilter = () => {
               >
                 <p>Сортировка по</p>
                 <input
-                  name="sortFilms"
-                  value={params.sortFilms}
+                  name="sort"
+                  value={params.sort}
                   onChange={inputFilterGlobalValue}
                   placeholder="Сортировка по:"
                   type="text"
@@ -98,8 +96,8 @@ const GlobalSearchFilter = () => {
               >
                 <p>Тип Фильма:</p>
                 <input
-                  name="tipeFilms"
-                  value={params.tipeFilms}
+                  name="tipe"
+                  value={params.tipe}
                   onChange={inputFilterGlobalValue}
                   placeholder="Тип фильма:"
                   type="text"

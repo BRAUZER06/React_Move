@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./Section.module.scss";
 import { Route, Routes, useLocation } from "react-router-dom";
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
@@ -9,23 +9,20 @@ import Pagination from "../Pagination/Pagination";
 import { useSelector } from "react-redux";
 
 const Section = () => {
-  const {pathname} = useLocation()
-  
+  const { pathname } = useLocation();
+
   const [numberPagination, setNumberPagination] = React.useState(6);
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
- 
-  
 
   const inputSearchValue = useSelector((state) => state.header.inputValue);
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
         {/* Только после перезагрузки срабатывает ( убирают пагинацию когда ты в профиле) */}
-        {pathname !=='/Profile' && (
+        {pathname !== "/Profile" && (
           <Pagination
-          
             numberPagination={numberPagination}
             onClickPaginateNumber={onClickPaginateNumber}
           />
@@ -77,8 +74,6 @@ const Section = () => {
           path="/Profile"
           element={
             <SectionProfile
-           
-
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />

@@ -1,5 +1,5 @@
 .Profile {
-height: 100vh;
+  height: 100vh;
   margin: 100px auto;
   width: 400px;
   text-align: left;
@@ -10,9 +10,9 @@ a {
   text-decoration: none;
   color: white;
 }
-h2{
+h2 {
   display: flex;
-  >a{
+  > a {
     margin-left: 10px;
   }
 }

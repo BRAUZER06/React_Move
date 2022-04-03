@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./SectionProfile.module.scss";
 import {
   FaGithub,
@@ -10,9 +10,6 @@ import {
 } from "react-icons/fa";
 
 const SectionProfile = () => {
-
- 
-  
   return (
     <div className={styles.Profile}>
       <h2>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./Header.module.scss";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -9,9 +9,8 @@ import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearch
 
 const Header = () => {
   const dispatch = useDispatch();
+  const refInputCheck = useRef(null);
   const inputSearchValue = useSelector((state) => state.header.inputValue);
-
-  //временно
   const [inputChecked, setInputChecked] = React.useState(false);
 
   const onChangeInputSearch = (e) => {
@@ -19,14 +18,15 @@ const Header = () => {
   };
 
   const onClickInputSearch = (e) => {
-    // делать setInputChecked(false если нажатии было за пределы инпута чтобы его закрвать )
+      //отлавливать клик вне элемента
+    refInputCheck.current.focus();
     setInputChecked(true);
   };
+
   const onClickCloseInput = () => {
     setInputChecked(false);
   };
 
-  
   const onClicHome = () => {};
   const onClickFilmsAndSeries = () => {};
   const onClickTrailer = () => {};
@@ -86,6 +86,7 @@ const Header = () => {
             )}
           >
             <input
+              ref={refInputCheck}
               onClick={onClickInputSearch}
               checked={inputChecked}
               value={inputSearchValue}
