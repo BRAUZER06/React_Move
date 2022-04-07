@@ -4,11 +4,14 @@ import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import ModalWindow from "../../Modal/ModalWindow";
+import { useDispatch, useSelector } from "react-redux";
 // Добавить модальное окно
 const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
+ 
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
-
+  
+  console.log('sectionFukmAndSeries');
   React.useEffect(() => {
     setIsLoading(true);
     try {

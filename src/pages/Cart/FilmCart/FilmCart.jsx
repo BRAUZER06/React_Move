@@ -1,19 +1,35 @@
 import React from "react";
 import styles from "./FilmCart.module.scss";
 import classNames from "classname";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  toggleModalAction,
+  idModalAction,
+} from "../../../redux/action/modalAction";
 
 const FilmCart = ({ ...props }) => {
-  const { posterUrlPreview, genres, nameRu, year } = props;
+  const { posterUrlPreview, genres, nameRu, year, filmId } = props;
+  const toggleModal = useSelector((state) => state.modal.toggleModal);
+  const idModal = useSelector((state) => state.modal.idModal);
+  console.log(filmId, "toggleModal" , toggleModal, "idModal", idModal);
+  const dispatch = useDispatch();
 
-  const onClickFilmCart = () => {};
+  const clickCartOpenModal = (id) => {
+    if(filmId === id){
+      dispatch(toggleModalAction(true));
+      dispatch(idModalAction(id));
+    }
+ 
+  };
+
   return (
-    <div className={styles.FilmCart}>
-      <div onClick={onClickFilmCart} className={styles.content}>
+    <div onClick={()=>clickCartOpenModal(filmId)} className={styles.FilmCart}>
+      <div className={styles.content}>
         <div className={styles.content__img}>
           <img src={posterUrlPreview} alt="" />
         </div>
         <div className={styles.content__text}>
-          <div onClick={onClickFilmCart} className={styles.content__text_name}>
+          <div className={styles.content__text_name}>
             <p>{nameRu}</p>
           </div>
           <div className={styles.content__text_genres}>

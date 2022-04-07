@@ -4,27 +4,37 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import styles from "./ModalWindow.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { idModalAction, toggleModalAction } from "../../redux/action/modalAction";
 const style = {
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  width:"800px",
+  height:"500px",
+  borderRadius:"15px",
 };
 //название было занято
 const ModalWindow = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const dispatch = useDispatch()
+  const {idModal, toggleModal}= useSelector(state=>state.modal)
+  console.log( `id: ${idModal}, toggle: ${toggleModal}`);
+  const handleOpen = () => dispatch(toggleModalAction(true));
+  const handleClose = () => dispatch(toggleModalAction(false));
+
+
+
+
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <div className={styles.modal}>
+      
       <Modal
-        open={open}
+        open={toggleModal}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"

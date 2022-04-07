@@ -8,9 +8,11 @@ const SectionPremiere = ({
   numberPagination,
   onClickPaginateNumber,
   inputSearchValue,
+  idCartForModal
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchPremiere, setFetchPremiere] = React.useState([]);
+  console.log('SectionPremiere');
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -38,7 +40,7 @@ const SectionPremiere = ({
             item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
           )
           .map((e) => (
-            <FilmCart key={e.filmId} {...e} />
+            <FilmCart  key={e.filmId} {...e} />
           ))}
       </div>
     </div>

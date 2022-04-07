@@ -5,6 +5,7 @@ import FilmCart from "../../Cart/FilmCart/FilmCart";
 
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
+
 const SectionTrailer = ({
   numberPagination,
   onClickPaginateNumber,
@@ -12,7 +13,7 @@ const SectionTrailer = ({
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchTrailer, setFetchTrailer] = React.useState([]);
-
+console.log('sectionTrailer');
   React.useEffect(() => {
     setIsLoading(true);
     try {
@@ -47,4 +48,4 @@ const SectionTrailer = ({
   );
 };
 
-export default SectionTrailer;
+export default React.memo(SectionTrailer) ;
