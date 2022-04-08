@@ -10,7 +10,7 @@ import {
 const FilmCart = (props) => {
   const { posterUrlPreview, genres, nameRu, year, filmId } = props;
   return (
-    <div   className={styles.FilmCart}>
+    <div className={styles.FilmCart}>
       <div className={styles.content}>
         <div className={styles.content__img}>
           <img src={posterUrlPreview} alt="" />

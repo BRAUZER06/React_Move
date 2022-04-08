@@ -42,7 +42,7 @@ const SectionTrailer = ({
           )
           .map((e) => (
             <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
-              <FilmCart  {...e} />
+              <FilmCart {...e} />
             </div>
           ))}
       </div>

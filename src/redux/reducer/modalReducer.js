@@ -5,8 +5,8 @@ const FETCH_FILM_MODAL = "FETCH_FILM_MODAL";
 const initState = {
   idModal: "",
   toggleModal: false,
-  error: false,
-  infoFilm: [],
+
+  infoFilm: {},
 };
 
 export const modalReducer = (state = initState, action) => {
@@ -23,7 +23,7 @@ export const modalReducer = (state = initState, action) => {
         toggleModal: action.payload,
       };
 
-    case "FETCH_FILM_MODAL":
+    case FETCH_FILM_MODAL:
       return {
         ...state,
         infoFilm: action.payload,

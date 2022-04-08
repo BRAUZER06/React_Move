@@ -4,7 +4,6 @@ const ADD_FILM_SUCCESS = "ADD_FILM_SUCCESS";
 const ADD_FILM_ERROR = "ADD_FILM_ERROR";
 const ADD_FILM_LOADING = "ADD_FILM_LOADING";
 
-
 export const fetchModalFilmInfo = () => {
   return (dispatch) => {};
 };

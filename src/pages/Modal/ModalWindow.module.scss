@@ -1,4 +1,68 @@
-.modal{
-
-
+.modal {
+}
+.modalLeft {
+  > img {
+    border-radius: 10px;
+    border: 2px solid rgb(140, 140, 137);
+    box-shadow: 2px 2px 10px 0px rgba(44, 6, 104, 0.6);
+    position: relative;
+    width: 260px;
+    height: 370px;
+    margin-right: 40px;
+  }
+}
+.modalRight {
+  display: flex;
+  flex-direction: column;
+  &__nameRu {
+    text-align: center;
+    font-size: 1.3em;
+    margin: 10px 0px 0px;
+    font-weight: bold;
+  }
+  &__filmLength {
+    margin: 0;
+    > span {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  }
+  &__year {
+    > span {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  }
+  &__description {
+    > span {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  }
+  &__countries {
+    margin: 15px 0px 0px;
+    &_span {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-right: 3px;
+    }
+    &_span_text {
+      margin-right: 5px;
+    }
+  }
+  &__genres {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 600px;
+    &_span {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-right: 3px;
+    }
+    &_span_text {
+      margin-top: 5px;
+      margin-right: 5px;
+    }
+  }
 }

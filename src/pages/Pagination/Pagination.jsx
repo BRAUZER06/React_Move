@@ -21,4 +21,4 @@ const pagination = ({ onClickPaginateNumber }) => {
   );
 };
 
-export default pagination;
+export default React.memo(pagination);
