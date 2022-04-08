@@ -8,11 +8,12 @@ const SectionPremiere = ({
   numberPagination,
   onClickPaginateNumber,
   inputSearchValue,
-  idCartForModal
+  idCartForModal,
+  clickCartOpenModal,
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchPremiere, setFetchPremiere] = React.useState([]);
-  console.log('SectionPremiere');
+  console.log("SectionPremiere");
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -28,7 +29,7 @@ const SectionPremiere = ({
       console.log(error);
     }
   }, [numberPagination]);
-  
+
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
@@ -40,7 +41,9 @@ const SectionPremiere = ({
             item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
           )
           .map((e) => (
-            <FilmCart  key={e.filmId} {...e} />
+            <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
+              <FilmCart  {...e} />
+            </div>
           ))}
       </div>
     </div>

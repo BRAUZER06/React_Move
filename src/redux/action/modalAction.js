@@ -11,3 +11,9 @@ export const toggleModalAction = (boolean) => {
     payload: boolean,
   };
 };
+export const fetchFilAction = (arr) => {
+  return {
+    type: "FETCH_FILM_MODAL",
+    payload: arr,
+  };
+};

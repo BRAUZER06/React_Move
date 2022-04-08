@@ -6,25 +6,32 @@ import SectionPremiere from "./SectionPremiere/SectionPremiere";
 import SectionProfile from "./SectionProfile/SectionProfile";
 import SectionTrailer from "./SectionTrailer/SectionTrailer";
 import Pagination from "../Pagination/Pagination";
-import { useSelector } from "react-redux";
-import ModalWindow from '../Modal/ModalWindow'
+import { useDispatch, useSelector } from "react-redux";
+import ModalWindow from "../Modal/ModalWindow";
+import {
+  idModalAction,
+  toggleModalAction,
+} from "../../redux/action/modalAction";
 
 const Section = () => {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const { idModal, toggleModa } = useSelector((state) => state.modal);
 
   const [numberPagination, setNumberPagination] = React.useState(6);
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
-  const idCartForModal = (e)=>{
-
-  }
+  const idCartForModal = (e) => {};
+  const clickCartOpenModal = (id) => {
+    dispatch(idModalAction(id));
+    dispatch(toggleModalAction(true));
+  };
 
   const inputSearchValue = useSelector((state) => state.header.inputValue);
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
-       
         {pathname !== "/Profile" && (
           <Pagination
             numberPagination={numberPagination}
@@ -39,7 +46,7 @@ const Section = () => {
           path="/"
           element={
             <SectionFilmsAndSeries
-           
+              clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
@@ -50,7 +57,7 @@ const Section = () => {
           path="/FilmsAndSeries"
           element={
             <SectionFilmsAndSeries
-           
+              clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
@@ -61,7 +68,7 @@ const Section = () => {
           path="/Trailer"
           element={
             <SectionTrailer
-           
+              clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
@@ -72,22 +79,14 @@ const Section = () => {
           path="/Premiere"
           element={
             <SectionPremiere
-          
+              clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
           }
         />
-        <Route
-          path="/Profile"
-          element={
-            <SectionProfile
-              
-             
-            />
-          }
-        />
+        <Route path="/Profile" element={<SectionProfile />} />
       </Routes>
     </div>
   );

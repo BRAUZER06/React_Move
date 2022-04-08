@@ -7,23 +7,10 @@ import {
   idModalAction,
 } from "../../../redux/action/modalAction";
 
-const FilmCart = ({ ...props }) => {
+const FilmCart = (props) => {
   const { posterUrlPreview, genres, nameRu, year, filmId } = props;
-  const toggleModal = useSelector((state) => state.modal.toggleModal);
-  const idModal = useSelector((state) => state.modal.idModal);
-  console.log(filmId, "toggleModal" , toggleModal, "idModal", idModal);
-  const dispatch = useDispatch();
-
-  const clickCartOpenModal = (id) => {
-    if(filmId === id){
-      dispatch(toggleModalAction(true));
-      dispatch(idModalAction(id));
-    }
- 
-  };
-
   return (
-    <div onClick={()=>clickCartOpenModal(filmId)} className={styles.FilmCart}>
+    <div   className={styles.FilmCart}>
       <div className={styles.content}>
         <div className={styles.content__img}>
           <img src={posterUrlPreview} alt="" />

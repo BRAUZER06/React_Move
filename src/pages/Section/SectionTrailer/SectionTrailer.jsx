@@ -5,15 +5,15 @@ import FilmCart from "../../Cart/FilmCart/FilmCart";
 
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
-
 const SectionTrailer = ({
   numberPagination,
   onClickPaginateNumber,
   inputSearchValue,
+  clickCartOpenModal,
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchTrailer, setFetchTrailer] = React.useState([]);
-console.log('sectionTrailer');
+  console.log("sectionTrailer");
   React.useEffect(() => {
     setIsLoading(true);
     try {
@@ -41,11 +41,13 @@ console.log('sectionTrailer');
             item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
           )
           .map((e) => (
-            <FilmCart key={e.filmId} {...e} />
+            <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
+              <FilmCart  {...e} />
+            </div>
           ))}
       </div>
     </div>
   );
 };
 
-export default React.memo(SectionTrailer) ;
+export default React.memo(SectionTrailer);

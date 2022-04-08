@@ -6,12 +6,15 @@ import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPage
 import ModalWindow from "../../Modal/ModalWindow";
 import { useDispatch, useSelector } from "react-redux";
 // Добавить модальное окно
-const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
- 
+const SectionFilmsAndSeries = ({
+  numberPagination,
+  inputSearchValue,
+  clickCartOpenModal,
+}) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
-  
-  console.log('sectionFukmAndSeries');
+
+  console.log("sectionFukmAndSeries");
   React.useEffect(() => {
     setIsLoading(true);
     try {
@@ -39,7 +42,9 @@ const SectionFilmsAndSeries = ({ numberPagination, inputSearchValue }) => {
             item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
           )
           .map((e) => (
-            <FilmCart key={e.filmId} {...e} />
+            <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
+              <FilmCart  {...e} />
+            </div>
           ))}
       </div>
     </div>
