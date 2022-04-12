@@ -6,14 +6,11 @@ import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPage
 
 const SectionPremiere = ({
   numberPagination,
-  onClickPaginateNumber,
   inputSearchValue,
-  idCartForModal,
   clickCartOpenModal,
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchPremiere, setFetchPremiere] = React.useState([]);
-  console.log("SectionPremiere");
 
   React.useEffect(() => {
     setIsLoading(true);

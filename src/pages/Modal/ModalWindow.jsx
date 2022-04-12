@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import { AiOutlineCaretDown } from "react-icons/ai";
 import Modal from "@mui/material/Modal";
 import styles from "./ModalWindow.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +9,9 @@ import {
   toggleModalAction,
   fetchFilAction,
 } from "../../redux/action/modalAction";
+
 import { instance } from "../../config/axios";
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -24,19 +25,37 @@ const style = {
   borderRadius: "15px",
   display: "flex",
 };
+
 //название было занято
 const ModalWindow = () => {
+  const [detali, setDetali] = React.useState([]);
+  const [detaliCheck, setDetaliCheck] = React.useState(false);
   const dispatch = useDispatch();
   const { toggleModal, idModal, infoFilm } = useSelector(
     (state) => state.modal
   );
+  console.log(detali);
   const handleClose = () => {
+    setDetaliCheck(false);
     dispatch(toggleModalAction(false));
     dispatch(idModalAction(""));
+    dispatch(fetchFilAction(""));
   };
-  console.log(idModal);
+
+  const onClickBtnDetailMove = async () => {
+    try {
+      setDetaliCheck(true);
+      await instance
+        .get(`films/${idModal}/images`)
+        .then((resp) => setDetali(resp.data.items));
+    } catch (error) {
+      alert("Подробная информация не доступна ");
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    if (idModal !== "") {
+    if (!idModal.length) {
       (async () => {
         await instance
           .get(`films/${idModal}`)
@@ -44,7 +63,7 @@ const ModalWindow = () => {
       })();
     }
   }, [idModal]);
-  console.log(infoFilm);
+
   return (
     <div className={styles.modal}>
       <Modal
@@ -58,6 +77,18 @@ const ModalWindow = () => {
             <img src={infoFilm.posterUrlPreview} alt="" />
             <p>Рейтинг на IMDb: {infoFilm.ratingImdb}</p>
             <p>Рейтинг на Кинопоиске: {infoFilm.ratingKinopoisk}</p>
+            <br />
+            <div
+              onClick={onClickBtnDetailMove}
+              className={styles.modalLeft_acteri}
+            >
+              <p className={styles.modalLeft_acteri_text}>
+                Подробно об актерах
+              </p>
+              <p className={styles.modalLeft_acteri_icon}>
+                <AiOutlineCaretDown />
+              </p>
+            </div>
           </div>
 
           <div className={styles.modalRight}>
@@ -100,6 +131,16 @@ const ModalWindow = () => {
             <p className={styles.modalRight__description}>
               <span>Подробнее:</span> {infoFilm.description}
             </p>
+
+            {detaliCheck && (
+              <div className={styles.detaliModal}>
+                {detali.map((e, i) => (
+                  <div key={i}>
+                    <img src={e.previewUrl}></img>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </Box>
       </Modal>

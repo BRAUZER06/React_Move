@@ -7,7 +7,7 @@
   height: 65px;
   color: rgb(204, 204, 216);
   margin: 0 auto;
-  width: 1170px;
+  max-width: 1170px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -101,4 +101,9 @@
   &:hover {
     color: rgb(255, 72, 72);
   }
+}
+
+
+@media(max-width:1200px){
+  
 }

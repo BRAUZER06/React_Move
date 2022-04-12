@@ -1,10 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;900&family=Roboto:wght@400;500;700&display=swap');
+/* font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto', sans-serif; */
 body{
-  background: rgb(53,7,56);
-background: linear-gradient(101deg, rgba(53,7,56,1) 1%, rgba(32,7,56,1) 27%, rgba(17,10,53,1) 36%, rgba(46,29,36,1) 85%, rgba(38,8,66,1) 100%);
+  min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
+  background: rgb(165,123,168);
+  background: linear-gradient(180deg, rgb(168, 109, 172) 0%, rgba(56,0,108,1) 100%);
 background-position: 0 0;
 
 background-size: cover;
 }
 .App {
   text-align: center;
+}
+
+
+
+@media(max-width:1200px){
+  body{
+  background: rgb(53,7,56);
+  background-position: 0 0;
+  background-size: cover;
+  }
 }

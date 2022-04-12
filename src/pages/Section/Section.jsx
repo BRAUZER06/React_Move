@@ -16,13 +16,11 @@ import {
 const Section = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-  const { idModal, toggleModa } = useSelector((state) => state.modal);
 
   const [numberPagination, setNumberPagination] = React.useState(6);
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
-  const idCartForModal = (e) => {};
   const clickCartOpenModal = (id) => {
     dispatch(idModalAction(id));
     dispatch(toggleModalAction(true));
@@ -33,10 +31,7 @@ const Section = () => {
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
         {pathname !== "/Profile" && (
-          <Pagination
-            numberPagination={numberPagination}
-            onClickPaginateNumber={onClickPaginateNumber}
-          />
+          <Pagination onClickPaginateNumber={onClickPaginateNumber} />
         )}
       </div>
       <ModalWindow />
@@ -48,7 +43,6 @@ const Section = () => {
             <SectionFilmsAndSeries
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
-              onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
           }
@@ -59,7 +53,6 @@ const Section = () => {
             <SectionFilmsAndSeries
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
-              onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
           }
@@ -70,7 +63,6 @@ const Section = () => {
             <SectionTrailer
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
-              onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
           }
@@ -81,7 +73,6 @@ const Section = () => {
             <SectionPremiere
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
-              onClickPaginateNumber={onClickPaginateNumber}
               numberPagination={numberPagination}
             />
           }

@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { instance } from "../../../config/axios";
 const ADD_FILM_SUCCESS = "ADD_FILM_SUCCESS";
 const ADD_FILM_ERROR = "ADD_FILM_ERROR";

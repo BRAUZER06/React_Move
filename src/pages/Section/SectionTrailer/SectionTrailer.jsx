@@ -7,13 +7,11 @@ import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPage
 
 const SectionTrailer = ({
   numberPagination,
-  onClickPaginateNumber,
   inputSearchValue,
   clickCartOpenModal,
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchTrailer, setFetchTrailer] = React.useState([]);
-  console.log("sectionTrailer");
   React.useEffect(() => {
     setIsLoading(true);
     try {

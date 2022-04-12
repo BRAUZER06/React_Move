@@ -1,14 +1,10 @@
 import React from "react";
 import styles from "./FilmCart.module.scss";
 import classNames from "classname";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  toggleModalAction,
-  idModalAction,
-} from "../../../redux/action/modalAction";
+
 
 const FilmCart = (props) => {
-  const { posterUrlPreview, genres, nameRu, year, filmId } = props;
+  const { posterUrlPreview, genres, nameRu, year } = props;
   return (
     <div className={styles.FilmCart}>
       <div className={styles.content}>

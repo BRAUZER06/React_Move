@@ -10,6 +10,21 @@
     height: 370px;
     margin-right: 40px;
   }
+  &_acteri {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: flex-end;
+    font-weight: 600;
+    white-space: nowrap;
+    &_text {
+      margin: 0px;
+      margin-right: 5px;
+    }
+    &_icon {
+      display: flex;
+      margin: 0px;
+    }
+  }
 }
 .modalRight {
   display: flex;
@@ -65,4 +80,10 @@
       margin-right: 5px;
     }
   }
+}
+
+.detaliModal{
+
+ 
+ 
 }

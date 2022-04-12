@@ -10,7 +10,6 @@ import {
 } from "react-icons/fa";
 
 const SectionProfile = () => {
-  console.log("sectionProfile");
   return (
     <div className={styles.Profile}>
       <h2>
