@@ -13,6 +13,7 @@ const SectionFilmsAndSeries = ({
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
 
 
+
   React.useEffect(() => {
     setIsLoading(true);
     try {
@@ -28,11 +29,10 @@ const SectionFilmsAndSeries = ({
     }
   }, [numberPagination]);
 
-
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
-  
+
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
