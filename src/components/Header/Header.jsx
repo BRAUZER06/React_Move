@@ -18,7 +18,7 @@ const Header = () => {
   };
 
   const onClickInputSearch = (e) => {
-    //отлавливать клик вне элемента
+    //отлавливать клик вне элемента useoutside
     refInputCheck.current.focus();
     setInputChecked(true);
   };

@@ -4,7 +4,6 @@ import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 
-// Добавить модальное окно
 const SectionFilmsAndSeries = ({
   numberPagination,
   inputSearchValue,
@@ -12,6 +11,7 @@ const SectionFilmsAndSeries = ({
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
+
 
   React.useEffect(() => {
     setIsLoading(true);
@@ -27,13 +27,14 @@ const SectionFilmsAndSeries = ({
       console.log(error);
     }
   }, [numberPagination]);
+
+
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
+  
   return (
     <div className={styles.films}>
-      {/* Сделать модалку */}
-      {/* <ModalWindow/> */}
       <div className={styles.films_container}>
         {fetchFilmAndSeries
           .filter((item) =>

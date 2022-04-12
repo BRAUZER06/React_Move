@@ -37,7 +37,7 @@ const ModalWindow = () => {
   const { toggleModal, idModal, infoFilm } = useSelector(
     (state) => state.modal
   );
-  console.log(detali);
+
   const handleClose = () => {
     setDetaliCheck(false);
     dispatch(toggleModalAction(false));

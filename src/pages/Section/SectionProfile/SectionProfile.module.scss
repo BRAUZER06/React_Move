@@ -15,4 +15,7 @@ h2 {
   > a {
     margin-left: 10px;
   }
+  &:hover, a:hover {
+    color: red;
+  }
 }
