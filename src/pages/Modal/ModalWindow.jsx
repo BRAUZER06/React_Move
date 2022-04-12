@@ -4,6 +4,7 @@ import { AiOutlineCaretDown } from "react-icons/ai";
 import Modal from "@mui/material/Modal";
 import styles from "./ModalWindow.module.scss";
 import { useDispatch, useSelector } from "react-redux";
+import classNames from "classname";
 import {
   idModalAction,
   toggleModalAction,
@@ -13,6 +14,9 @@ import {
 import { instance } from "../../config/axios";
 
 const style = {
+  trasition: "0.4s",
+  maxHeight: "700px",
+  overflow: "auto",
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -26,7 +30,6 @@ const style = {
   display: "flex",
 };
 
-//название было занято
 const ModalWindow = () => {
   const [detali, setDetali] = React.useState([]);
   const [detaliCheck, setDetaliCheck] = React.useState(false);
@@ -40,11 +43,13 @@ const ModalWindow = () => {
     dispatch(toggleModalAction(false));
     dispatch(idModalAction(""));
     dispatch(fetchFilAction(""));
+    setDetali([]);
   };
 
   const onClickBtnDetailMove = async () => {
+    setDetaliCheck((detaliCheck) => !detaliCheck);
+    console.log(detaliCheck);
     try {
-      setDetaliCheck(true);
       await instance
         .get(`films/${idModal}/images`)
         .then((resp) => setDetali(resp.data.items));
@@ -83,9 +88,14 @@ const ModalWindow = () => {
               className={styles.modalLeft_acteri}
             >
               <p className={styles.modalLeft_acteri_text}>
-                Подробно об актерах
+                Посмотреть кадры, постеры
               </p>
-              <p className={styles.modalLeft_acteri_icon}>
+              <p
+                className={classNames(
+                  styles.modalLeft_acteri_icon,
+                  detaliCheck && styles.modalLeft_acteri_icon_active
+                )}
+              >
                 <AiOutlineCaretDown />
               </p>
             </div>
@@ -136,7 +146,11 @@ const ModalWindow = () => {
               <div className={styles.detaliModal}>
                 {detali.map((e, i) => (
                   <div key={i}>
-                    <img src={e.previewUrl}></img>
+                    <img
+                      className={styles.detaliModal_img}
+                      src={e.previewUrl}
+                      alt="Фото"
+                    ></img>
                   </div>
                 ))}
               </div>

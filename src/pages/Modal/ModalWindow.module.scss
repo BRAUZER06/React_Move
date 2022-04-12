@@ -1,4 +1,6 @@
 .modal {
+  
+  
 }
 .modalLeft {
   > img {
@@ -21,8 +23,12 @@
       margin-right: 5px;
     }
     &_icon {
+      transition: 0.2s;
       display: flex;
       margin: 0px;
+      &_active{
+        transform: rotate(90deg);
+      }
     }
   }
 }
@@ -82,8 +88,13 @@
   }
 }
 
-.detaliModal{
-
- 
- 
+.detaliModal {
+ transition: 0.3s;
+  &_img{
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid gray;
+    width: 100%;
+  }
+  
 }
