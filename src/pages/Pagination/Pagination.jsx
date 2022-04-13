@@ -1,7 +1,7 @@
 import React from "react";
+import Stack from "@mui/material/Stack";
 import styles from "./Pagination.module.scss";
 import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
 
 const pagination = ({ onClickPaginateNumber }) => {
   return (

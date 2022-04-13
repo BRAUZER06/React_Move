@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./GlobalSearchFilter.module.scss";
-import { FaGlobeAmericas } from "react-icons/fa";
+import classNames from "classname";
 import { useDispatch } from "react-redux";
 import { instance } from "../../../config/axios";
-import classNames from "classname";
+import { FaGlobeAmericas } from "react-icons/fa";
+import styles from "./GlobalSearchFilter.module.scss";
 import { globalSeracFilms } from "../../../redux/action/globalSearchFilterAction";
 
 const GlobalSearchFilter = () => {

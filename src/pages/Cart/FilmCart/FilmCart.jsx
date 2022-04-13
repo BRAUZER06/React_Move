@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./FilmCart.module.scss";
 import classNames from "classname";
+import styles from "./FilmCart.module.scss";
 
 const FilmCart = (props) => {
   const { posterUrlPreview, genres, nameRu, year } = props;

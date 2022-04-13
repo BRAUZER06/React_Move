@@ -1,15 +1,16 @@
-import React, { useRef } from "react";
-import styles from "./Header.module.scss";
-import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
 import classNames from "classname";
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import styles from "./Header.module.scss";
+import { instanceV2_1 } from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
+import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
+import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
 import {
   headerInputValue,
   getFilmsInputEnter,
+  handleCheckedGetFilms,
 } from "../../redux/action/headerAction";
-import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
-import { instanceV2_1 } from "../../config/axios";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const Header = () => {
           .get(`/films/search-by-keyword?keyword=${inputSearchValue}`)
           .then((resp) => {
             dispatch(getFilmsInputEnter(resp.data.films));
+            dispatch(handleCheckedGetFilms(true));
           });
       } catch (error) {
         alert("Ошибка, найти не удалось");
@@ -47,6 +49,8 @@ const Header = () => {
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
     setInputChecked(false);
+    dispatch(handleCheckedGetFilms(false));
+    dispatch(headerInputValue(""));
   };
 
   const onClicHome = () => {};

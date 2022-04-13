@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+
 import Box from "@mui/material/Box";
-import { AiOutlineCaretDown } from "react-icons/ai";
 import Modal from "@mui/material/Modal";
+import React, { useEffect } from "react";
+import { instance } from "../../config/axios";
 import styles from "./ModalWindow.module.scss";
+import { AiOutlineCaretDown } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classname";
 import {
@@ -11,7 +13,7 @@ import {
   fetchFilAction,
 } from "../../redux/action/modalAction";
 
-import { instance } from "../../config/axios";
+
 
 const style = {
   trasition: "0.4s",

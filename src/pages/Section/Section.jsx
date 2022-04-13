@@ -1,24 +1,23 @@
 import React from "react";
 import styles from "./Section.module.scss";
-import { Route, Routes, useLocation } from "react-router-dom";
-import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
-import SectionPremiere from "./SectionPremiere/SectionPremiere";
-import SectionProfile from "./SectionProfile/SectionProfile";
-import SectionTrailer from "./SectionTrailer/SectionTrailer";
+import ModalWindow from "../Modal/ModalWindow";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import ModalWindow from "../Modal/ModalWindow";
-import {
-  idModalAction,
-  toggleModalAction,
-} from "../../redux/action/modalAction";
+import SectionProfile from "./SectionProfile/SectionProfile";
+import SectionTrailer from "./SectionTrailer/SectionTrailer";
+import { Route, Routes, useLocation } from "react-router-dom";
+import SectionPremiere from "./SectionPremiere/SectionPremiere";
+import {idModalAction, toggleModalAction } from "../../redux/action/modalAction";
+import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
+
 
 const Section = () => {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
-
+  
   const [numberPagination, setNumberPagination] = React.useState(6);
   const onClickPaginateNumber = (e) => {
+    //манипуляции для получения индекса пагинации 
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
   const clickCartOpenModal = (id) => {

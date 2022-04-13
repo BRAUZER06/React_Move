@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./SectionFilmsAndSeries.module.scss";
 import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
+import styles from "./SectionFilmsAndSeries.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
+import { useSelector } from "react-redux";
 
 const SectionFilmsAndSeries = ({
   numberPagination,
@@ -11,14 +12,15 @@ const SectionFilmsAndSeries = ({
 }) => {
   const [isLoaing, setIsLoading] = React.useState(false);
   const [fetchFilmAndSeries, setFetchFilmAndSeries] = React.useState([]);
-
-
+  const { checked: inputHeaderChecked, films: filmsHeaderInput } = useSelector(
+    (state) => state.header
+  );
 
   React.useEffect(() => {
     setIsLoading(true);
     try {
       (async () => {
-        const res = await instance
+        await instance
           .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
           .then((respons) => setFetchFilmAndSeries(respons.data.films));
         setIsLoading(false);
@@ -27,28 +29,40 @@ const SectionFilmsAndSeries = ({
       alert("Ошибка при получении Фильмов");
       console.log(error);
     }
-  }, [numberPagination]);
+  }, [numberPagination, inputHeaderChecked]);
 
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
 
+  //Я АЖ СЛЕЗУ ПОУСТИЛ ОТ ЭТОГО КОДА
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
-        {fetchFilmAndSeries
-          .filter((item) =>
-            item.nameRu.toLowerCase().includes(inputSearchValue.toLowerCase())
-          )
-          .map((e) => (
-            <div
-              className={styles.films_containerDiv}
-              key={e.filmId}
-              onClick={() => clickCartOpenModal(e.filmId)}
-            >
+        {inputHeaderChecked ? (
+          filmsHeaderInput.map((e) => (
+            <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
               <FilmCart {...e} />
             </div>
-          ))}
+          ))
+        ) : (
+          <>
+            {fetchFilmAndSeries
+              .filter((item) =>
+                item.nameRu
+                  .toLowerCase()
+                  .includes(inputSearchValue.toLowerCase())
+              )
+              .map((e) => (
+                <div
+                  key={e.filmId}
+                  onClick={() => clickCartOpenModal(e.filmId)}
+                >
+                  <FilmCart {...e} />
+                </div>
+              ))}
+          </>
+        )}
       </div>
     </div>
   );
