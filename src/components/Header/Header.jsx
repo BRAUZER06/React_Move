@@ -4,8 +4,12 @@ import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import classNames from "classname";
 import { useDispatch, useSelector } from "react-redux";
-import { headerInputValue } from "../../redux/action/headerAction";
+import {
+  headerInputValue,
+  getFilmsInputEnter,
+} from "../../redux/action/headerAction";
 import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
+import { instanceV2_1 } from "../../config/axios";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -17,12 +21,30 @@ const Header = () => {
     dispatch(headerInputValue(e.target.value));
   };
 
-  const onClickInputSearch = (e) => {
-    //отлавливать клик вне элемента useoutside
+  //событие для определения нажатия на  Enter в inpute (для поиска фильмых)
+  const getFilmsEnterInput = async (e) => {
+    //ошибка с сервером
+    if (e.code === "Enter") {
+      try {
+        await instanceV2_1
+          .get(`/films/search-by-keyword?keyword=${inputSearchValue}`)
+          .then((resp) => {
+            dispatch(getFilmsInputEnter(resp.data.films));
+          });
+      } catch (error) {
+        alert("Ошибка, найти не удалось");
+      }
+    }
+  };
+
+  //фокусируется на инпут если нажать на рядом лежащий элемент
+  const onClickInputSearch = () => {
+    // сделать ---> отлавливать клик вне элемента useoutside
     refInputCheck.current.focus();
     setInputChecked(true);
   };
 
+  // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
     setInputChecked(false);
   };
@@ -90,6 +112,7 @@ const Header = () => {
               onClick={onClickInputSearch}
               checked={inputChecked}
               value={inputSearchValue}
+              onKeyPress={getFilmsEnterInput}
               onChange={onChangeInputSearch}
               type="text"
               placeholder="Поиск..."

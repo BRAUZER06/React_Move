@@ -59,6 +59,8 @@ const ModalWindow = () => {
     }
   };
 
+
+
   useEffect(() => {
     if (!idModal.length) {
       (async () => {
