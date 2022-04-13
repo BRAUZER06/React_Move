@@ -55,7 +55,7 @@ const Section = () => {
               numberPagination={numberPagination}
             />
           }
-        />
+        /> 
         <Route
           path="/Trailer"
           element={

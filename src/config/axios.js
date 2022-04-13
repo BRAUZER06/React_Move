@@ -17,3 +17,4 @@ export const instanceV2_1 = axios.create({
   },
   baseURL: "https://kinopoiskapiunofficial.tech/api/v2.1",
 });
+ 

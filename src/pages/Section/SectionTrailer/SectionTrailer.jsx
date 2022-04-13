@@ -28,7 +28,7 @@ const SectionTrailer = ({
     } catch (error) {
       alert("Ошибка при получении Трейлеров");
       console.log(error);
-    }
+    } 
   }, [numberPagination, inputHeaderChecked]);
 
   if (isLoaing) {

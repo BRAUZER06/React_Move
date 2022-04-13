@@ -34,7 +34,7 @@ const SectionFilmsAndSeries = ({
   if (isLoaing) {
     return <IsLoadingPagesAnimation />;
   }
-
+ 
   //Я АЖ СЛЕЗУ ПОУСТИЛ ОТ ЭТОГО КОДА
   return (
     <div className={styles.films}>

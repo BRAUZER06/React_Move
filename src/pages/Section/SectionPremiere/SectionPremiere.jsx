@@ -16,7 +16,7 @@ const SectionPremiere = ({
   const { checked: inputHeaderChecked, films: filmsHeaderInput } = useSelector(
     (state) => state.header
   );
-
+ 
   React.useEffect(() => {
     setIsLoading(true);
     try {

@@ -9,6 +9,7 @@ function App() {
   React.useEffect(() => {
     alert("Ограничение в api не дали реализовать весь потенциал  :)");
   }, []);
+
   navigate("/");
   return (
     <div className="App">
