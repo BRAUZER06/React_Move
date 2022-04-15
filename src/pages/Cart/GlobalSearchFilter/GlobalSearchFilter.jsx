@@ -1,14 +1,14 @@
 import React from "react";
 import classNames from "classname";
-import { useDispatch } from "react-redux";
-import { instance } from "../../../config/axios";
+import { useDispatch, useSelector } from "react-redux";
 import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
-import { globalSeracFilms } from "../../../redux/action/globalSearchFilterAction";
+import { getGlobalSerchFilmsAction } from "../../../redux/action/globalSearchFilterAction";
 
 const GlobalSearchFilter = () => {
   const dispatch = useDispatch();
-  const [checkGlobalSearch, setCheckGlobalSearch] = React.useState(false);
+  const [checkGlobalSearchIcon, setCheckGlobalSearchIcon] =
+    React.useState(false);
   const [params, serParams] = React.useState({
     sort: "",
     tipe: "",
@@ -19,31 +19,12 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  //найти алтернативу этому аду
   const getFilmsFilter = () => {
-    try {
-      (async () => {
-        const res = await instance
-          .get(
-            `/films?${params.sort.length && `order=${params.sort}`}${
-              params.tipe.length && `&type=${params.tipe}`
-            }${params.minRating.length && `&ratingFrom=${params.minRating}`}${
-              params.maxRating.length && `&ratingTo=${params.maxRating}`
-            }${params.minYear.length && `&yearFrom=${params.minYear}`}${
-              params.maxYear.length && `&yearTo=${params.maxYear}`
-            }${params.keyword.length && `&keyword=${params.keyword}`}&page=1`
-          )
-          .then((respons) => dispatch(globalSeracFilms(respons.data.items)))
-          .then((respon) => console.log(respon));
-      })();
-    } catch (error) {
-      alert("Фильтр не работает");
-      console.log(error);
-    }
+    dispatch(getGlobalSerchFilmsAction(params));
   };
 
   const onClickGlobalSearch = () => {
-    setCheckGlobalSearch((checkGlobalSearch) => !checkGlobalSearch);
+    setCheckGlobalSearchIcon((checkGlobalSearchIcon) => !checkGlobalSearchIcon);
   };
 
   const inputFilterGlobalValue = (e) => {
@@ -57,14 +38,13 @@ const GlobalSearchFilter = () => {
         <div
           className={classNames(
             styles.GlobalSearchInput__icon,
-            checkGlobalSearch && styles.GlobalSearchInput__icon_active
+            checkGlobalSearchIcon && styles.GlobalSearchInput__icon_active
           )}
         >
           <FaGlobeAmericas onClick={onClickGlobalSearch} />
         </div>
 
-        {checkGlobalSearch && (
-          // {getFilmsFilterArr.map(film)=>()}
+        {checkGlobalSearchIcon && (
           <div className={styles.GlobalSearchInput__filterMove}>
             <div className={styles.GlobalSearchInput__filterMove__content}>
               <div

@@ -5,7 +5,6 @@ const FETCH_FILM_MODAL = "FETCH_FILM_MODAL";
 const initState = {
   idModal: "",
   toggleModal: false,
-
   infoFilm: {},
 };
 
