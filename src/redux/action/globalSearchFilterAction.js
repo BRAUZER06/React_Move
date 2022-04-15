@@ -3,9 +3,11 @@ import { instance } from "../../config/axios";
 export const globalFilmsCheckedAction = (checked) => {
   return { type: "CHECK_FILMS", payload: checked };
 };
+export const globalCheckedMenuAction = (checked) => {
+  return { type: "CHECK_MENU", payload: checked };
+};
 
-
-export const getGlobalSerchFilmsAction = (text) => {
+export const fetchGlobalFilmsAction = (text) => {
   return async (dispatch) => {
     try {
       dispatch({ type: "GET_FILMS_LOADING", payload: true });

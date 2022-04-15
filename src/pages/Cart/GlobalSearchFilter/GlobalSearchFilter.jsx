@@ -3,12 +3,15 @@ import classNames from "classname";
 import { useDispatch, useSelector } from "react-redux";
 import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
-import { getGlobalSerchFilmsAction } from "../../../redux/action/globalSearchFilterAction";
+import {
+  fetchGlobalFilmsAction,
+  globalFilmsCheckedAction,
+  globalCheckedMenuAction,
+} from "../../../redux/action/globalSearchFilterAction";
 
 const GlobalSearchFilter = () => {
+  const { checkedMenu } = useSelector((state) => state.globalSearchFilms);
   const dispatch = useDispatch();
-  const [checkGlobalSearchIcon, setCheckGlobalSearchIcon] =
-    React.useState(false);
   const [params, serParams] = React.useState({
     sort: "",
     tipe: "",
@@ -20,11 +23,12 @@ const GlobalSearchFilter = () => {
   });
 
   const getFilmsFilter = () => {
-    dispatch(getGlobalSerchFilmsAction(params));
+    dispatch(fetchGlobalFilmsAction(params));
+    dispatch(globalFilmsCheckedAction(true));
   };
 
   const onClickGlobalSearch = () => {
-    setCheckGlobalSearchIcon((checkGlobalSearchIcon) => !checkGlobalSearchIcon);
+    dispatch(globalCheckedMenuAction(!checkedMenu));
   };
 
   const inputFilterGlobalValue = (e) => {
@@ -38,13 +42,13 @@ const GlobalSearchFilter = () => {
         <div
           className={classNames(
             styles.GlobalSearchInput__icon,
-            checkGlobalSearchIcon && styles.GlobalSearchInput__icon_active
+            checkedMenu && styles.GlobalSearchInput__icon_active
           )}
         >
           <FaGlobeAmericas onClick={onClickGlobalSearch} />
         </div>
 
-        {checkGlobalSearchIcon && (
+        {checkedMenu && (
           <div className={styles.GlobalSearchInput__filterMove}>
             <div className={styles.GlobalSearchInput__filterMove__content}>
               <div

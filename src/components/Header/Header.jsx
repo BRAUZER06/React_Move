@@ -8,34 +8,29 @@ import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
 import {
   headerInputValue,
-  getFilmsInputEnter,
-  handleCheckedGetFilms,
+  headerCheckedFilms,
+  fetchFilmsInputTextAction,
+  headerCheckedInput,
 } from "../../redux/action/headerAction";
 
 const Header = () => {
   const dispatch = useDispatch();
   const refInputCheck = useRef(null);
-  const inputSearchValue = useSelector((state) => state.header.inputValue);
-  const [inputChecked, setInputChecked] = React.useState(false);
+  const inputValue = useSelector((state) => state.header.inputValue);
+  const { error, loading, films, checkedFilms, checkInput } = useSelector(
+    (state) => state.header
+  );
+
 
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValue(e.target.value));
   };
 
-  //событие для определения нажатия на  Enter в inpute (для поиска фильмых)
+  //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
     //ошибка с сервером
     if (e.code === "Enter") {
-      try {
-        await instanceV2_1
-          .get(`/films/search-by-keyword?keyword=${inputSearchValue}`)
-          .then((resp) => {
-            dispatch(getFilmsInputEnter(resp.data.films));
-            dispatch(handleCheckedGetFilms(true));
-          });
-      } catch (error) {
-        alert("Ошибка, найти не удалось");
-      }
+      dispatch(fetchFilmsInputTextAction(inputValue));
     }
   };
 
@@ -43,13 +38,12 @@ const Header = () => {
   const onClickInputSearch = () => {
     // сделать ---> отлавливать клик вне элемента useoutside
     refInputCheck.current.focus();
-    setInputChecked(true);
+    dispatch(headerCheckedInput(!checkInput));
   };
 
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
-    setInputChecked(false);
-    dispatch(handleCheckedGetFilms(false));
+    dispatch(headerCheckedInput(false));
     dispatch(headerInputValue(""));
   };
 
@@ -70,7 +64,7 @@ const Header = () => {
           >
             Fil'mets
           </Link>
-          {inputChecked ? (
+          {checkInput ? (
             ""
           ) : (
             <>
@@ -98,7 +92,7 @@ const Header = () => {
             </>
           )}
         </div>
-        {inputChecked && (
+        {checkInput && (
           <div className={styles.header__divItems_globalSearch}>
             <GlobalSearchFilter />
           </div>
@@ -108,21 +102,21 @@ const Header = () => {
           <div
             className={classNames(
               styles.header__divItems_inputDiv,
-              inputChecked && styles.header__divItems_inputDiv_checked
+              checkInput && styles.header__divItems_inputDiv_checked
             )}
           >
             <input
               ref={refInputCheck}
               onClick={onClickInputSearch}
-              checked={inputChecked}
-              value={inputSearchValue}
+              checked={checkInput}
+              value={inputValue}
               onKeyPress={getFilmsEnterInput}
               onChange={onChangeInputSearch}
               type="text"
               placeholder="Поиск..."
               className={classNames(
                 styles.header__divItems_inputDiv_input,
-                inputChecked && styles.header__divItems_inputDiv_input_checked
+                checkInput && styles.header__divItems_inputDiv_input_checked
               )}
             />
             <FaSearch
@@ -131,7 +125,7 @@ const Header = () => {
             />
           </div>
         </div>
-        {inputChecked && (
+        {checkInput && (
           <FaPlus onClick={onClickCloseInput} className={styles.iconXmark} />
         )}
         <div className={styles.header__divItems}>

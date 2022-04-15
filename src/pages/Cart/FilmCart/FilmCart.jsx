@@ -15,7 +15,7 @@ const FilmCart = (props) => {
             <p>{nameRu}</p>
           </div>
           <div className={styles.content__text_genres}>
-            {genres.map((e) => (
+            {genres.slice(0,4).map((e) => (
               <span className={styles.content__text_genres_span} key={e.genre}>
                 {e.genre},
               </span>
