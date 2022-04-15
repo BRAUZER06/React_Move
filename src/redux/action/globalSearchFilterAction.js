@@ -1,6 +1,6 @@
 import { instance } from "../../config/axios";
 
-export const globalFilmsCheckedAction = (checked) => {
+export const globalCheckedFilmsAction = (checked) => {
   return { type: "CHECK_FILMS", payload: checked };
 };
 export const globalCheckedMenuAction = (checked) => {
@@ -21,7 +21,7 @@ export const fetchGlobalFilmsAction = (text) => {
         }${text.keyword.length && `&keyword=${text.keyword}`}&page=1`
       );
       dispatch({ type: "GET_FILMS_SUCCSES", payload: response.data.items });
-      globalFilmsCheckedAction(true);
+      globalCheckedFilmsAction(true);
     } catch (error) {
       dispatch({
         type: "GET_FILMS_ERROR",

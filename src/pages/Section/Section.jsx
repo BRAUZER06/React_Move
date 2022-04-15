@@ -7,7 +7,7 @@ import SectionProfile from "./SectionProfile/SectionProfile";
 import SectionTrailer from "./SectionTrailer/SectionTrailer";
 import { Route, Routes, useLocation } from "react-router-dom";
 import SectionPremiere from "./SectionPremiere/SectionPremiere";
-import {idModalAction, toggleModalAction } from "../../redux/action/modalAction";
+import {idFilmAction, checkedModalAction } from "../../redux/action/modalAction";
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
 
 
@@ -21,8 +21,8 @@ const Section = () => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
   const clickCartOpenModal = (id) => {
-    dispatch(idModalAction(id));
-    dispatch(toggleModalAction(true));
+    dispatch(idFilmAction (id));
+    dispatch(checkedModalAction(true));
   };
 
   const inputSearchValue = useSelector((state) => state.header.inputValue);

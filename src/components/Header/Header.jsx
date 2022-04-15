@@ -2,35 +2,37 @@ import classNames from "classname";
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
-import { instanceV2_1 } from "../../config/axios";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
 import {
-  headerInputValue,
-  headerCheckedFilms,
+  headerInputValueAction,
+  headerCheckedFilmsAction,
   fetchFilmsInputTextAction,
-  headerCheckedInput,
+  headerCheckedInputAction,
 } from "../../redux/action/headerAction";
+
+import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
 
 const Header = () => {
   const dispatch = useDispatch();
   const refInputCheck = useRef(null);
+  //легкая оптимизация 
   const inputValue = useSelector((state) => state.header.inputValue);
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
 
-
   const onChangeInputSearch = (e) => {
-    dispatch(headerInputValue(e.target.value));
+    dispatch(headerInputValueAction(e.target.value));
   };
 
   //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
-    //ошибка с сервером
     if (e.code === "Enter") {
+      dispatch(globalCheckedFilmsAction(false));
       dispatch(fetchFilmsInputTextAction(inputValue));
+      dispatch(headerCheckedFilmsAction(true));
     }
   };
 
@@ -38,13 +40,13 @@ const Header = () => {
   const onClickInputSearch = () => {
     // сделать ---> отлавливать клик вне элемента useoutside
     refInputCheck.current.focus();
-    dispatch(headerCheckedInput(!checkInput));
+    dispatch(headerCheckedInputAction(true));
   };
 
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
-    dispatch(headerCheckedInput(false));
-    dispatch(headerInputValue(""));
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
   };
 
   const onClicHome = () => {};

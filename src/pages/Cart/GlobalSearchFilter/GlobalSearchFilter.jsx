@@ -5,12 +5,13 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
 import {
   fetchGlobalFilmsAction,
-  globalFilmsCheckedAction,
+  globalCheckedFilmsAction,
   globalCheckedMenuAction,
 } from "../../../redux/action/globalSearchFilterAction";
+import { headerCheckedFilmsAction } from "../../../redux/action/headerAction";
 
 const GlobalSearchFilter = () => {
-  const { checkedMenu } = useSelector((state) => state.globalSearchFilms);
+  const { checkedMenu } = useSelector((state) => state.globalFilms);
   const dispatch = useDispatch();
   const [params, serParams] = React.useState({
     sort: "",
@@ -22,16 +23,18 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  const getFilmsFilter = () => {
+  //скрывает показ фильмов по поиску через инпут, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
+  const onClickFetchFilms = () => {
+    dispatch(headerCheckedFilmsAction(false));
     dispatch(fetchGlobalFilmsAction(params));
-    dispatch(globalFilmsCheckedAction(true));
+    dispatch(globalCheckedFilmsAction(true));
   };
 
-  const onClickGlobalSearch = () => {
+  const checkedToggleGlobalSearch = () => {
     dispatch(globalCheckedMenuAction(!checkedMenu));
   };
 
-  const inputFilterGlobalValue = (e) => {
+  const inputsGlobalSearchValue = (e) => {
     const { value, name } = e.target;
     serParams({ ...params, [name]: value });
   };
@@ -45,7 +48,7 @@ const GlobalSearchFilter = () => {
             checkedMenu && styles.GlobalSearchInput__icon_active
           )}
         >
-          <FaGlobeAmericas onClick={onClickGlobalSearch} />
+          <FaGlobeAmericas onClick={checkedToggleGlobalSearch} />
         </div>
 
         {checkedMenu && (
@@ -61,7 +64,7 @@ const GlobalSearchFilter = () => {
                 <input
                   name="sort"
                   value={params.sort}
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   placeholder="Сортировка по:"
                   type="text"
                   list="list_one"
@@ -82,7 +85,7 @@ const GlobalSearchFilter = () => {
                 <input
                   name="tipe"
                   value={params.tipe}
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   placeholder="Тип фильма:"
                   type="text"
                   list="list_two"
@@ -98,7 +101,7 @@ const GlobalSearchFilter = () => {
                 <input
                   name="minRating"
                   value={params.minRating}
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   minLength={0}
                   placeholder="0"
                   type="number"
@@ -109,7 +112,7 @@ const GlobalSearchFilter = () => {
                 <input
                   name="maxRating"
                   value={params.maxRating}
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   maxLength={10}
                   placeholder="10"
                   type="number"
@@ -120,7 +123,7 @@ const GlobalSearchFilter = () => {
                 <input
                   value={params.minYear}
                   name="minYear"
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   minLength={1000}
                   placeholder="1000"
                   type="number"
@@ -131,7 +134,7 @@ const GlobalSearchFilter = () => {
                 <input
                   value={params.maxYear}
                   name="maxYear"
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   maxLength={3000}
                   placeholder="3000"
                   type="number"
@@ -142,7 +145,7 @@ const GlobalSearchFilter = () => {
                 <input
                   name="keyword"
                   value={params.keyword}
-                  onChange={inputFilterGlobalValue}
+                  onChange={inputsGlobalSearchValue}
                   minLength={1}
                   placeholder="ключевое слово"
                   type="text"
@@ -151,7 +154,7 @@ const GlobalSearchFilter = () => {
             </div>
             <button
               className={styles.GlobalSearchInput__filterMove_button}
-              onClick={getFilmsFilter}
+              onClick={onClickFetchFilms}
             >
               Найти
             </button>

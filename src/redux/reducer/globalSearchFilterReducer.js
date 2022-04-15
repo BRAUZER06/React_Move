@@ -22,7 +22,7 @@ export const globalSearcFilmshReducer = (state = initState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        films: [],
+        films: [...state.films],
       };
 
     case GET_FILMS_SUCCSES:

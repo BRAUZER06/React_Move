@@ -1,19 +1,16 @@
-
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import React, { useEffect } from "react";
+import React from "react";
 import { instance } from "../../config/axios";
 import styles from "./ModalWindow.module.scss";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import classNames from "classname";
 import {
-  idModalAction,
-  toggleModalAction,
-  fetchFilAction,
+  idFilmAction,
+  checkedModalAction,
+  fetchFilmAction,
 } from "../../redux/action/modalAction";
-
-
 
 const style = {
   trasition: "0.4s",
@@ -36,24 +33,19 @@ const ModalWindow = () => {
   const [detali, setDetali] = React.useState([]);
   const [detaliCheck, setDetaliCheck] = React.useState(false);
   const dispatch = useDispatch();
-  const { toggleModal, idModal, infoFilm } = useSelector(
-    (state) => state.modal
-  );
+  const { checked, idFilm, infoFilm } = useSelector((state) => state.modal);
 
   const handleClose = () => {
     setDetaliCheck(false);
-    dispatch(toggleModalAction(false));
-    dispatch(idModalAction(""));
-    dispatch(fetchFilAction(""));
-    setDetali([]);
+    dispatch(checkedModalAction(false));
+    dispatch(idFilmAction(""));
   };
 
-  const onClickBtnDetailMove = async () => {
-    setDetaliCheck((detaliCheck) => !detaliCheck);
-    console.log(detaliCheck);
+  const onClickFetchhDetailMove = async () => {
+    setDetaliCheck((detaliCheck) => !detaliCheck);;
     try {
       await instance
-        .get(`films/${idModal}/images`)
+        .get(`films/${idFilm}/images`)
         .then((resp) => setDetali(resp.data.items));
     } catch (error) {
       alert("Подробная информация не доступна ");
@@ -61,22 +53,16 @@ const ModalWindow = () => {
     }
   };
 
-
-
-  useEffect(() => {
-    if (!idModal.length) {
-      (async () => {
-        await instance
-          .get(`films/${idModal}`)
-          .then((resp) => dispatch(fetchFilAction(resp.data)));
-      })();
+  React.useEffect(() => {
+    if (!idFilm.length) {
+      dispatch(fetchFilmAction(idFilm));
     }
-  }, [idModal]);
+  }, [idFilm]);
 
   return (
     <div className={styles.modal}>
       <Modal
-        open={toggleModal}
+        open={checked}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -88,7 +74,7 @@ const ModalWindow = () => {
             <p>Рейтинг на Кинопоиске: {infoFilm.ratingKinopoisk}</p>
             <br />
             <div
-              onClick={onClickBtnDetailMove}
+              onClick={onClickFetchhDetailMove}
               className={styles.modalLeft_acteri}
             >
               <p className={styles.modalLeft_acteri_text}>

@@ -1,31 +1,53 @@
-const ID_MODAL = "ID_MODAL";
-const TOGGLE_MODAL = "TOGGLE_MODAL";
-const FETCH_FILM_MODAL = "FETCH_FILM_MODAL";
+const ID_FILM = "ID_MODAL";
+const CHECKED_MODAL = "TOGGLE_MODAL";
+const GET_FILM_MODAL_SUCCSES = "GET_FILM_MODAL_SUCCSES";
+const GET_FILMS_MODAL_ERROR = "GET_FILMS_MODAL_ERROR";
+const GET_FILMS_MODAL_LOADING = "GET_FILMS_MODAL_LOADING";
 
 const initState = {
-  idModal: "",
-  toggleModal: false,
+  idFilm: "",
   infoFilm: {},
+  error: null,
+  loading: false,
+  checked: false,
 };
 
 export const modalReducer = (state = initState, action) => {
   switch (action.type) {
-    case ID_MODAL:
+    case ID_FILM:
       return {
         ...state,
-        idModal: action.payload,
+        idFilm: action.payload,
       };
 
-    case TOGGLE_MODAL:
+    case CHECKED_MODAL:
       return {
         ...state,
-        toggleModal: action.payload,
+        checked: action.payload,
       };
 
-    case FETCH_FILM_MODAL:
+    case GET_FILM_MODAL_SUCCSES:
       return {
         ...state,
+        loading: false,
+        error: null,
         infoFilm: action.payload,
+      };
+
+    case GET_FILMS_MODAL_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+        infoFilm: { ...state, infoFilm: state.infoFilm },
+      };
+
+    case GET_FILMS_MODAL_LOADING:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        infoFilm: { ...state, infoFilm: state.infoFilm },
       };
 
     default:
