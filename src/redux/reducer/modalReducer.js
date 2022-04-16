@@ -4,6 +4,7 @@ const GET_FILMS_MODAL_ERROR = "GET_FILMS_MODAL_ERROR";
 const GET_FILMS_MODAL_SUCCSES = "GET_FILMS_MODAL_SUCCSES";
 const GET_FILMS_MODAL_LOADING = "GET_FILMS_MODAL_LOADING";
 
+
 const initState = {
   idFilm: "",
   infoFilm: {},

@@ -4,14 +4,14 @@ import ModalWindow from "../Modal/ModalWindow";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import SectionProfile from "./SectionProfile/SectionProfile";
-import SectionTrailer from "./SectionTrailer/SectionTrailer";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-import SectionPremiere from "./SectionPremiere/SectionPremiere";
+
+import { Route, Routes, useLocation } from "react-router-dom";
+
 import {
   idFilmAction,
   checkedModalAction,
 } from "../../redux/action/modalAction";
-import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
+import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilms";
 import FilmsSearchInput from "./FilmsSearchInput/FilmsSearchInput";
 import HomePages from "../HomePages/HomePages";
 
@@ -56,7 +56,7 @@ const Section = () => {
         <Route
           path="/Trailer"
           element={
-            <SectionTrailer
+            <SectionFilmsAndSeries
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}
@@ -66,7 +66,7 @@ const Section = () => {
         <Route
           path="/Premiere"
           element={
-            <SectionPremiere
+            <SectionFilmsAndSeries
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}

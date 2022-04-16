@@ -1,13 +1,13 @@
 import React from "react";
 import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
-import styles from "./SectionFilmsAndSeries.module.scss";
+import styles from "./SectionFilms.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkedFilmsAndSeriesAction,
-  fetchFilmsAndSeriesAction,
-} from "../../../redux/action/sectionFilmsAndSeriesAction";
+  checkedFilmsAction,
+  fetchFilmsAction,
+} from "../../../redux/action/sectionFilmsAction";
 
 //при переходе на другую вкладку удалять старый массив с фильмами ( чтобы работала подгрузка и не засорял кеш)
 const SectionFilmsAndSeries = ({
@@ -22,14 +22,16 @@ const SectionFilmsAndSeries = ({
   );
 
   React.useEffect(() => {
-    dispatch(fetchFilmsAndSeriesAction(numberPagination));
+    dispatch(fetchFilmsAction(numberPagination));
+
+    return console.log("демонтажж");
   }, [numberPagination, checkedFilms]);
 
   if (loading) {
     return <IsLoadingPagesAnimation />;
   }
 
-  //Я АЖ СЛЕЗУ ПОУСТИЛ ОТ ЭТОГО КОДА
+
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>

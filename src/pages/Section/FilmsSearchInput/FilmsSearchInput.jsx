@@ -5,9 +5,9 @@ import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPage
 import { useDispatch, useSelector } from "react-redux";
 import {
   //СДЕЛАТЬ ОТДЕЛЬ ОТ FILMSANDSERIES
-  checkedFilmsAndSeriesAction,
-  fetchFilmsAndSeriesAction,
-} from "../../../redux/action/sectionFilmsAndSeriesAction";
+  checkedFilmsAction,
+  fetchFilmsAction,
+} from "../../../redux/action/sectionFilmsAction";
 import { headerCheckedFilmsAction } from "../../../redux/action/headerAction";
 
 const FilmsSearchInput = ({
@@ -20,7 +20,7 @@ const FilmsSearchInput = ({
   const { checkedFilms, loading, error } = useSelector((state) => state.header);
 
   React.useEffect(() => {
-    dispatch(fetchFilmsAndSeriesAction(inputSearchValue));
+    dispatch(fetchFilmsAction(inputSearchValue));
     return () => {
       dispatch(headerCheckedFilmsAction(false));
     };

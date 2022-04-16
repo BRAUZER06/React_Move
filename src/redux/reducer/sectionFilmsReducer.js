@@ -1,8 +1,8 @@
 //Слишком сложно было придумать название 
-const CHECKED_FILMS_SECT_FILMS_SERIES = "CHECKED_FILMS_SECT_FILMS_SERIES";
-const GET_FILMS_SECT_FILMS_SERIES_ERROR = "GET_FILMS_SECT_FILMS_SERIES_ERROR";
-const GET_FILMS_SECT_FILMS_SERIES_LOADING = "GET_FILMS_SECT_FILMS_SERIES_LOADING";
-const GET_FILMS_SECT_FILMS_SERIES_SUCCSES = "GET_FILMS_SECT_FILMS_SERIES_SUCCSES";
+const CHECKED_FILMS = "CHECKED_FILMS";
+const GET_FILMS_ERROR = "GET_FILMS_ERROR";
+const GET_FILMS_LOADING = "GET_FILMS_LOADING";
+const GET_FILMS_SUCCSES = "GET_FILMS_SUCCSES";
 
 const initState = {
   checkedFilms: false,
@@ -11,12 +11,12 @@ const initState = {
   films: [],
 };
 
-export const sectionFilmsAndSeriesReducer = (state = initState, action) => {
+export const sectionFilmsReducer = (state = initState, action) => {
   switch (action.type) {
-    case CHECKED_FILMS_SECT_FILMS_SERIES:
+    case CHECKED_FILMS:
       return { ...state, checkedFilms: action.payload };
 
-    case GET_FILMS_SECT_FILMS_SERIES_ERROR:
+    case GET_FILMS_ERROR:
       return {
         ...state,
         error: action.payload,
@@ -24,7 +24,7 @@ export const sectionFilmsAndSeriesReducer = (state = initState, action) => {
         films: [...state.films],
       };
 
-    case GET_FILMS_SECT_FILMS_SERIES_LOADING:
+    case GET_FILMS_LOADING:
       return {
         ...state,
         error: null,
@@ -33,7 +33,7 @@ export const sectionFilmsAndSeriesReducer = (state = initState, action) => {
         films: [],
       };
 
-    case GET_FILMS_SECT_FILMS_SERIES_SUCCSES:
+    case GET_FILMS_SUCCSES:
       return { ...state, error: null, loading: false, films: action.payload };
 
     default:

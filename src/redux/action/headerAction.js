@@ -3,7 +3,6 @@ import { instanceV2_1 } from "../../config/axios";
 export const headerInputValueAction = (inputValue) => {
   return { type: "INPUT_VALUE", payload: inputValue };
 };
-
 export const headerCheckedFilmsAction = (check) => {
   return { type: "CHECK_FILMS", payload: check };
 };
@@ -30,4 +29,30 @@ export const fetchFilmsInputTextAction = (inputValue) => {
       console.log(error);
     }
   };
+};
+
+
+export const checkedPageFilmetsAction = (check) => {
+  return { type: "CHECK_PAGE_FILMETS", payload: check };
+};
+
+
+export const checkedPageHomeAction = (check) => {
+  return { type: "CHECK_PAGE_HOME", payload: check };
+};
+
+export const checkedPageFilmSeriesInputAction = (check) => {
+  return { type: "CHECK_PAGE_FILMS_AND_SERIES", payload: check };
+};
+
+export const checkedPageTrailerAction = (check) => {
+  return { type: "CHECK_PAGE_TRAILER", payload: check };
+};
+
+export const checkedPagePremiereAction = (check) => {
+  return { type: "CHECK_PAGE_PREMIERE", payload: check };
+};
+
+export const checkedPageProfileAction = (check) => {
+  return { type: "CHECK_PAGE_PROFILE", payload: check };
 };

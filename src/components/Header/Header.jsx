@@ -12,6 +12,14 @@ import {
   headerCheckedInputAction,
 } from "../../redux/action/headerAction";
 
+import {
+  checkedPageHomeAction,
+  checkedPageFilmSeriesInputAction,
+  checkedPageTrailerAction,
+  checkedPagePremiereAction,
+  checkedPageProfileAction,
+} from "../../redux/action/headerAction";
+
 import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
 
 const Header = () => {
@@ -56,24 +64,19 @@ const Header = () => {
   };
 
   const onClicHome = () => {
-    dispatch(headerCheckedInputAction(false));
-    dispatch(headerInputValueAction(""));
+    dispatch(checkedPageHomeAction());
   };
   const onClickFilmsAndSeries = () => {
-    dispatch(headerCheckedInputAction(false));
-    dispatch(headerInputValueAction(""));
+    dispatch(checkedPageFilmSeriesInputAction());
   };
   const onClickTrailer = () => {
-    dispatch(headerCheckedInputAction(false));
-    dispatch(headerInputValueAction(""));
+    dispatch(checkedPageTrailerAction());
   };
   const onClickPremiere = () => {
-    dispatch(headerCheckedInputAction(false));
-    dispatch(headerInputValueAction(""));
+    dispatch(checkedPagePremiereAction());
   };
   const onClickProfile = () => {
-    dispatch(headerCheckedInputAction(false));
-    dispatch(headerInputValueAction(""));
+    dispatch(checkedPageProfileAction());
   };
 
   return (
