@@ -5,12 +5,11 @@ import styles from "./SectionFilmsAndSeries.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkedFilmsAction,
-  fetchFilmsAction,
+  checkedFilmsAndSeriesAction,
+  fetchFilmsAndSeriesAction,
 } from "../../../redux/action/sectionFilmsAndSeriesAction";
 
-
-
+//при переходе на другую вкладку удалять старый массив с фильмами ( чтобы работала подгрузка и не засорял кеш)
 const SectionFilmsAndSeries = ({
   numberPagination,
   inputSearchValue,
@@ -22,9 +21,8 @@ const SectionFilmsAndSeries = ({
     (state) => state.filmsAndSeries
   );
 
-  
   React.useEffect(() => {
-    dispatch(fetchFilmsAction(inputSearchValue));
+    dispatch(fetchFilmsAndSeriesAction(numberPagination));
   }, [numberPagination, checkedFilms]);
 
   if (loading) {

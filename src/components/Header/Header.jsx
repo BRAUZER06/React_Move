@@ -19,8 +19,6 @@ const Header = () => {
   const navigate = useNavigate();
   const refInputCheck = useRef(null);
 
-
-
   const inputValue = useSelector((state) => state.header.inputValue);
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
@@ -29,7 +27,6 @@ const Header = () => {
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
-
 
   //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
@@ -59,13 +56,25 @@ const Header = () => {
   };
 
   const onClicHome = () => {
-    dispatch(headerCheckedInputAction(false))
-
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
   };
-  const onClickFilmsAndSeries = () => {};
-  const onClickTrailer = () => {};
-  const onClickPremiere = () => {};
-  const onClickProfile = () => {};
+  const onClickFilmsAndSeries = () => {
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
+  };
+  const onClickTrailer = () => {
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
+  };
+  const onClickPremiere = () => {
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
+  };
+  const onClickProfile = () => {
+    dispatch(headerCheckedInputAction(false));
+    dispatch(headerInputValueAction(""));
+  };
 
   return (
     <div className={styles.App}>

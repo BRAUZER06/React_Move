@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./HomePages.module.scss";
 
 const HomePages = () => {
+  console.log("ОШИБКИ ИЗ-ЗА ВИДЕОРОЛИКА");
   return (
     <div className={styles.content}>
       <iframe
@@ -10,11 +11,24 @@ const HomePages = () => {
         src="https://www.youtube.com/embed/XXHCio8TsEo?autoplay=1"
         title="YouTube video player"
         frameborder="0"
-        autoplay="1"
+
         allowfullscreen
       ></iframe>
     </div>
+
+    
   );
 };
+
+
+
+
+
+
+
+
+
+
+
 
 export default HomePages;
