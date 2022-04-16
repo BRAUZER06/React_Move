@@ -1,9 +1,10 @@
-const ID_FILM = "ID_MODAL";
-const CHECKED_MODAL = "TOGGLE_MODAL";
-const GET_FILMS_MODAL_ERROR = "GET_FILMS_MODAL_ERROR";
-const GET_FILMS_MODAL_SUCCSES = "GET_FILMS_MODAL_SUCCSES";
-const GET_FILMS_MODAL_LOADING = "GET_FILMS_MODAL_LOADING";
-
+import {
+  ID_FILM,
+  CHECKED_MODAL,
+  GET_FILMS_MODAL_ERROR,
+  GET_FILMS_MODAL_SUCCSES,
+  GET_FILMS_MODAL_LOADING,
+} from "../actionTypes";
 
 const initState = {
   idFilm: "",
@@ -40,6 +41,7 @@ export const modalReducer = (state = initState, action) => {
         ...state,
         loading: false,
         error: action.payload,
+
         infoFilm: { ...state, infoFilm: state.infoFilm },
       };
 
@@ -48,7 +50,8 @@ export const modalReducer = (state = initState, action) => {
         ...state,
         loading: true,
         error: null,
-        infoFilm: { ...state, infoFilm: state.infoFilm },
+        //тут сделал пустой объект  чтобы было видно загрузку фильмов
+        infoFilm: {},
       };
 
     default:

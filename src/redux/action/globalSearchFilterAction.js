@@ -1,17 +1,36 @@
 import { instance } from "../../config/axios";
+import {
+  CHECK_MENU_GLOBAL,
+  CHECK_FILMS_GLOBAL,
+  GET_FILMS_GLOBAL_ERROR,
+  GET_FILMS_GLOBAL_LOADING,
+  GET_FILMS_GLOBAL_SUCCSES,
+} from "../actionTypes";
 
 export const globalCheckedFilmsAction = (checked) => {
-  return { type: "CHECK_FILMS", payload: checked };
+  return { type: CHECK_FILMS_GLOBAL, payload: checked };
 };
 export const globalCheckedMenuAction = (checked) => {
-  return { type: "CHECK_MENU", payload: checked };
+  return { type: CHECK_MENU_GLOBAL, payload: checked };
+};
+
+export const fetchGlobalMenuLoadingAction = (loading) => {
+  return { type: GET_FILMS_GLOBAL_LOADING };
+};
+
+export const fetchGlobalMenuErrorAction = (error) => {
+  return { type: GET_FILMS_GLOBAL_ERROR, payload: error };
+};
+
+export const fetchGlobalMenuSuccsesAction = (arr) => {
+  return { type: GET_FILMS_GLOBAL_SUCCSES, payload: arr };
 };
 
 export const fetchGlobalFilmsAction = (text) => {
   return async (dispatch) => {
     try {
-      //Исправить
-      dispatch({ type: "GET_FILMS_LOADING", payload: true });
+      //Исправить/найти альтернативу
+      dispatch(fetchGlobalMenuLoadingAction());
       const response = await instance.get(
         `/films?${text.sort.length && `order=${text.sort}`}${
           text.tipe.length && `&type=${text.tipe}`
@@ -21,13 +40,10 @@ export const fetchGlobalFilmsAction = (text) => {
           text.maxYear.length && `&yearTo=${text.maxYear}`
         }${text.keyword.length && `&keyword=${text.keyword}`}&page=1`
       );
-      dispatch({ type: "GET_FILMS_SUCCSES", payload: response.data.items });
+      dispatch(fetchGlobalMenuSuccsesAction(response.data.items));
       globalCheckedFilmsAction(true);
     } catch (error) {
-      dispatch({
-        type: "GET_FILMS_ERROR",
-        payload: "Ошибка при получении данных",
-      });
+      dispatch(fetchGlobalMenuErrorAction("Ошибка при получении данных"));
       console.log(error);
     }
   };

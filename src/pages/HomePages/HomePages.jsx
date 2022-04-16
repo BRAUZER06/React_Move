@@ -11,24 +11,10 @@ const HomePages = () => {
         src="https://www.youtube.com/embed/XXHCio8TsEo?autoplay=1"
         title="YouTube video player"
         frameborder="0"
-
         allowfullscreen
       ></iframe>
     </div>
-
-    
   );
 };
-
-
-
-
-
-
-
-
-
-
-
 
 export default HomePages;

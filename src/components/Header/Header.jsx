@@ -1,6 +1,6 @@
 import classNames from "classname";
 import React, { useRef } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
@@ -10,14 +10,6 @@ import {
   headerCheckedFilmsAction,
   fetchFilmsInputTextAction,
   headerCheckedInputAction,
-} from "../../redux/action/headerAction";
-
-import {
-  checkedPageHomeAction,
-  checkedPageFilmSeriesInputAction,
-  checkedPageTrailerAction,
-  checkedPagePremiereAction,
-  checkedPageProfileAction,
 } from "../../redux/action/headerAction";
 
 import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
@@ -63,21 +55,11 @@ const Header = () => {
     dispatch(headerInputValueAction(""));
   };
 
-  const onClicHome = () => {
-    dispatch(checkedPageHomeAction());
-  };
-  const onClickFilmsAndSeries = () => {
-    dispatch(checkedPageFilmSeriesInputAction());
-  };
-  const onClickTrailer = () => {
-    dispatch(checkedPageTrailerAction());
-  };
-  const onClickPremiere = () => {
-    dispatch(checkedPagePremiereAction());
-  };
-  const onClickProfile = () => {
-    dispatch(checkedPageProfileAction());
-  };
+  const onClicHome = () => {};
+  const onClickFilmsAndSeries = () => {};
+  const onClickTrailer = () => {};
+  const onClickPremiere = () => {};
+  const onClickProfile = () => {};
 
   return (
     <div className={styles.App}>

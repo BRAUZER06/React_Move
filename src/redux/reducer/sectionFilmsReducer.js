@@ -1,8 +1,9 @@
-//Слишком сложно было придумать название 
-const CHECKED_FILMS = "CHECKED_FILMS";
-const GET_FILMS_ERROR = "GET_FILMS_ERROR";
-const GET_FILMS_LOADING = "GET_FILMS_LOADING";
-const GET_FILMS_SUCCSES = "GET_FILMS_SUCCSES";
+import {
+  CHECKED_FILMS,
+  GET_FILMS_ERROR,
+  GET_FILMS_SUCCSES,
+  GET_FILMS_LOADING,
+} from "../actionTypes";
 
 const initState = {
   checkedFilms: false,
@@ -21,6 +22,7 @@ export const sectionFilmsReducer = (state = initState, action) => {
         ...state,
         error: action.payload,
         loading: false,
+        //оставил стейт чтобы при ошибке поиска, пользователь не видел ошибку
         films: [...state.films],
       };
 

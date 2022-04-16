@@ -1,32 +1,53 @@
 import { instance } from "../../config/axios";
+import {
+  ID_FILM,
+  CHECKED_MODAL,
+  GET_FILMS_MODAL_ERROR,
+  GET_FILMS_MODAL_SUCCSES,
+  GET_FILMS_MODAL_LOADING,
+} from "../actionTypes";
 
 export const idFilmAction = (idFilm) => {
   return {
-    type: "ID_MODAL",
+    type: ID_FILM,
     payload: idFilm,
   };
 };
 
 export const checkedModalAction = (checked) => {
   return {
-    type: "TOGGLE_MODAL",
+    type: CHECKED_MODAL,
     payload: checked,
+  };
+};
+
+export const fetchErrorModalAction = (error) => {
+  return {
+    type: GET_FILMS_MODAL_ERROR,
+    payload: error,
+  };
+};
+export const fetchLoadinModalAction = (loading) => {
+  return {
+    type: GET_FILMS_MODAL_LOADING,
+  };
+};
+export const fetchSuccsesModalAction = (arr) => {
+  return {
+    type: GET_FILMS_MODAL_SUCCSES,
+    payload: arr,
   };
 };
 
 export const fetchFilmAction = (idFilm) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: "GET_FILMS_MODAL_LOADING" });
-
-      const response = await instance.get(`films/${idFilm}`);
-      dispatch({ type: "GET_FILMS_MODAL_SUCCSES", payload: response.data });
+      dispatch(fetchLoadinModalAction());
+      await instance
+        .get(`films/${idFilm}`)
+        .then((res) => dispatch(fetchSuccsesModalAction(res.data)));
     } catch (error) {
-      dispatch({
-        type: "GET_FILMS_MODAL_ERROR",
-        payload: "Ошибка при получении данных ",
-      });
-
+      dispatch(fetchErrorModalAction("Ошибка при получении данных "));
       console.log(error);
     }
   };

@@ -1,8 +1,10 @@
-const CHECK_MENU = "CHECK_MENU";
-const CHECK_FILMS = "CHECK_FILMS";
-const GET_FILMS_ERROR = "GET_FILMS_ERROR";
-const GET_FILMS_LOADING = "GET_FILMS_LOADING";
-const GET_FILMS_SUCCSES = "GET_FILMS_SUCCSES";
+import {
+  CHECK_MENU_GLOBAL,
+  CHECK_FILMS_GLOBAL,
+  GET_FILMS_GLOBAL_ERROR,
+  GET_FILMS_GLOBAL_LOADING,
+  GET_FILMS_GLOBAL_SUCCSES,
+} from "../actionTypes";
 
 const initState = {
   films: [],
@@ -14,10 +16,10 @@ const initState = {
 
 export const globalSearcFilmshReducer = (state = initState, action) => {
   switch (action.type) {
-    case GET_FILMS_LOADING:
+    case GET_FILMS_GLOBAL_LOADING:
       return { ...state, loading: true, error: null, films: [] };
 
-    case GET_FILMS_ERROR:
+    case GET_FILMS_GLOBAL_ERROR:
       return {
         ...state,
         loading: false,
@@ -25,17 +27,17 @@ export const globalSearcFilmshReducer = (state = initState, action) => {
         films: [...state.films],
       };
 
-    case GET_FILMS_SUCCSES:
+    case GET_FILMS_GLOBAL_SUCCSES:
       return { ...state, loading: false, error: null, films: action.payload };
 
-    case CHECK_FILMS:
+    case CHECK_FILMS_GLOBAL:
       return {
         ...state,
         checkedFilms: action.payload,
         films: [...state.films],
       };
 
-    case CHECK_MENU:
+    case CHECK_MENU_GLOBAL:
       return { ...state, checkedMenu: action.payload, films: [...state.films] };
 
     default:
