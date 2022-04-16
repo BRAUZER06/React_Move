@@ -10,6 +10,7 @@ export const globalCheckedMenuAction = (checked) => {
 export const fetchGlobalFilmsAction = (text) => {
   return async (dispatch) => {
     try {
+      //Исправить
       dispatch({ type: "GET_FILMS_LOADING", payload: true });
       const response = await instance.get(
         `/films?${text.sort.length && `order=${text.sort}`}${

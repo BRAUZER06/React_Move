@@ -16,6 +16,7 @@ const SectionTrailer = ({
     (state) => state.header
   );
 
+  
   React.useEffect(() => {
     setIsLoading(true);
     try {
@@ -28,7 +29,7 @@ const SectionTrailer = ({
     } catch (error) {
       alert("Ошибка при получении Трейлеров");
       console.log(error);
-    } 
+    }
   }, [numberPagination, inputHeaderChecked]);
 
   if (isLoaing) {

@@ -1,6 +1,6 @@
 import classNames from "classname";
 import React, { useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
@@ -16,16 +16,20 @@ import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterA
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const refInputCheck = useRef(null);
-  //легкая оптимизация 
+
+
+
   const inputValue = useSelector((state) => state.header.inputValue);
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
-    console.log(films);
+
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
+
 
   //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
@@ -33,7 +37,11 @@ const Header = () => {
       dispatch(globalCheckedFilmsAction(false));
       dispatch(fetchFilmsInputTextAction(inputValue));
       dispatch(headerCheckedFilmsAction(true));
-     
+      navigate("/FilmsSearchInput");
+
+      if (!inputValue) {
+        navigate("/FilmsAndSeries");
+      }
     }
   };
 
@@ -50,7 +58,10 @@ const Header = () => {
     dispatch(headerInputValueAction(""));
   };
 
-  const onClicHome = () => {};
+  const onClicHome = () => {
+    dispatch(headerCheckedInputAction(false))
+
+  };
   const onClickFilmsAndSeries = () => {};
   const onClickTrailer = () => {};
   const onClickPremiere = () => {};

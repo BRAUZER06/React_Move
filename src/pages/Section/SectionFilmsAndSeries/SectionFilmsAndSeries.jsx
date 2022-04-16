@@ -17,13 +17,12 @@ const SectionFilmsAndSeries = ({
   clickCartOpenModal,
 }) => {
   const dispatch = useDispatch();
+  const films = useSelector((state) => state.filmsAndSeries.films);
   const { checkedFilms, error, loading } = useSelector(
     (state) => state.filmsAndSeries
   );
 
   
-  const films = useSelector((state) => state.filmsAndSeries.films);
-    console.log(inputSearchValue);
   React.useEffect(() => {
     dispatch(fetchFilmsAction(inputSearchValue));
   }, [numberPagination, checkedFilms]);

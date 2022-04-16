@@ -15,47 +15,31 @@ import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries
 import FilmsSearchInput from "./FilmsSearchInput/FilmsSearchInput";
 
 const Section = () => {
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const [numberPagination, setNumberPagination] = React.useState(6);
+  const inputSearchValue = useSelector((state) => state.header.inputValue);
+
+      //манипуляции для получения индекса пагинации
   const onClickPaginateNumber = (e) => {
-    //манипуляции для получения индекса пагинации
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
+
   const clickCartOpenModal = (id) => {
     dispatch(idFilmAction(id));
     dispatch(checkedModalAction(true));
   };
-  const { checkedFilms: inputSearchCheckedFilms } = useSelector(
-    (state) => state.header
-  );
-
-  console.log(inputSearchCheckedFilms);
-
-  const inputSearchValue = useSelector((state) => state.header.inputValue);
+  
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
-        {pathname !== "/Profile" && (
+        {pathname !== "/" && (
           <Pagination onClickPaginateNumber={onClickPaginateNumber} />
         )}
       </div>
       <ModalWindow />
 
       <Routes>
-        {inputSearchCheckedFilms &
-        (
-          <Route
-            path="/FilmsSearchInput"
-            element={
-              <FilmsSearchInput
-                clickCartOpenModal={clickCartOpenModal}
-                inputSearchValue={inputSearchValue}
-                numberPagination={numberPagination}
-              />
-            }
-          />
-        )}
         <Route
           path="/FilmsAndSeries"
           element={
@@ -86,7 +70,28 @@ const Section = () => {
             />
           }
         />
-        <Route path="/Profile" element={<SectionProfile />} />{" "}
+        <Route
+          path="/FilmsSearchInput"
+          element={
+            <FilmsSearchInput
+              clickCartOpenModal={clickCartOpenModal}
+              inputSearchValue={inputSearchValue}
+              numberPagination={numberPagination}
+            />
+          }
+        />
+        {/* FilmsSearchFilter */}
+        <Route
+          path="/FilmsSearchFilter"
+          element={
+            <FilmsSearchInput
+              clickCartOpenModal={clickCartOpenModal}
+              inputSearchValue={inputSearchValue}
+              numberPagination={numberPagination}
+            />
+          }
+        />
+        <Route path="/Profile" element={<SectionProfile />} />
       </Routes>
     </div>
   );

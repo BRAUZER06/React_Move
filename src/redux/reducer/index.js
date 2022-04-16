@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
+import { modalReducer } from "./modalReducer";
 import { headerReducer } from "./headerReducer";
 import { globalSearcFilmshReducer } from "./globalSearchFilterReducer";
-import { modalReducer } from "./modalReducer";
 import { sectionFilmsAndSeriesReducer } from "./sectionFilmsAndSeriesReducer";
+
 export const rootReducer = combineReducers({
   header: headerReducer,
   globalFilms: globalSearcFilmshReducer,

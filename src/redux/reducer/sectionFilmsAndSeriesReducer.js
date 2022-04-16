@@ -1,7 +1,7 @@
+const CHECKED_FILMS = "CHECKED_FILMS";
 const GET_FILMS_ERROR = "GET_FILMS_ERROR";
 const GET_FILMS_LOADING = "GET_FILMS_LOADING";
 const GET_FILMS_SUCCSES = "GET_FILMS_SUCCSES";
-const CHECKED_FILMS = "CHECKED_FILMS";
 
 const initState = {
   checkedFilms: false,

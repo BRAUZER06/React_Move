@@ -20,7 +20,7 @@ export const fetchFilmAction = (idFilm) => {
       dispatch({ type: "GET_FILMS_MODAL_LOADING" });
 
       const response = await instance.get(`films/${idFilm}`);
-      dispatch({ type: "GET_FILM_MODAL_SUCCSES", payload: response.data });
+      dispatch({ type: "GET_FILMS_MODAL_SUCCSES", payload: response.data });
     } catch (error) {
       dispatch({
         type: "GET_FILMS_MODAL_ERROR",

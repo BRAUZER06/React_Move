@@ -1,7 +1,7 @@
 const ID_FILM = "ID_MODAL";
 const CHECKED_MODAL = "TOGGLE_MODAL";
-const GET_FILM_MODAL_SUCCSES = "GET_FILM_MODAL_SUCCSES";
 const GET_FILMS_MODAL_ERROR = "GET_FILMS_MODAL_ERROR";
+const GET_FILMS_MODAL_SUCCSES = "GET_FILMS_MODAL_SUCCSES";
 const GET_FILMS_MODAL_LOADING = "GET_FILMS_MODAL_LOADING";
 
 const initState = {
@@ -26,7 +26,7 @@ export const modalReducer = (state = initState, action) => {
         checked: action.payload,
       };
 
-    case GET_FILM_MODAL_SUCCSES:
+    case GET_FILMS_MODAL_SUCCSES:
       return {
         ...state,
         loading: false,

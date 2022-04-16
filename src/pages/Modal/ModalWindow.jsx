@@ -1,3 +1,4 @@
+import classNames from "classname";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import React from "react";
@@ -5,7 +6,7 @@ import { instance } from "../../config/axios";
 import styles from "./ModalWindow.module.scss";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import classNames from "classname";
+
 import {
   idFilmAction,
   checkedModalAction,
@@ -27,22 +28,26 @@ const style = {
   width: "700px",
   borderRadius: "15px",
   display: "flex",
+  borderTopRightRadius: "0px",
+  borderBottomRightRadius: "0px",
 };
 
 const ModalWindow = () => {
+  const dispatch = useDispatch();
   const [detali, setDetali] = React.useState([]);
   const [detaliCheck, setDetaliCheck] = React.useState(false);
-  const dispatch = useDispatch();
   const { checked, idFilm, infoFilm } = useSelector((state) => state.modal);
 
+  //закрытие modalWindow
   const handleClose = () => {
     setDetaliCheck(false);
     dispatch(checkedModalAction(false));
     dispatch(idFilmAction(""));
   };
 
+  //допольнительная информация о фильме при нажатии на 'Подробнее'
   const onClickFetchhDetailMove = async () => {
-    setDetaliCheck((detaliCheck) => !detaliCheck);;
+    setDetaliCheck((detaliCheck) => !detaliCheck);
     try {
       await instance
         .get(`films/${idFilm}/images`)

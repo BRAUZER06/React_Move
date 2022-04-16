@@ -1,10 +1,11 @@
 .FilmCart {
   height: 480px;
   width: 260px;
-  margin-bottom: 10px;
+
 }
 .content {
   position: relative;
+  
   &__img {
     cursor: pointer;
     > img {
@@ -37,6 +38,7 @@
       }
     }
     &_genres {
+      margin-bottom: 40px;
       padding: 0px 20px 0px 7px;
       text-align: left;
       word-wrap: break-word;

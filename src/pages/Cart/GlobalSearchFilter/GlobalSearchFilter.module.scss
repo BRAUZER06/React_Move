@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+ opacity: 0.9;
   &__icon {
     cursor: pointer;
     font-size: 2em;
@@ -21,7 +22,7 @@
     z-index: 2;
     position: absolute;
     top: 49px;
-    right: -50px;
+    right: 260px;
     background-color: rgba(26, 8, 44, 0.96);
     border: 3px solid rgba(154, 39, 39, 0.4);
     border-top: initial;
