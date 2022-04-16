@@ -22,7 +22,7 @@ const Header = () => {
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
-
+    console.log(films);
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
@@ -33,6 +33,7 @@ const Header = () => {
       dispatch(globalCheckedFilmsAction(false));
       dispatch(fetchFilmsInputTextAction(inputValue));
       dispatch(headerCheckedFilmsAction(true));
+     
     }
   };
 
