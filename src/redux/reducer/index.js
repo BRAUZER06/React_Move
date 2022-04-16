@@ -8,6 +8,5 @@ export const rootReducer = combineReducers({
   header: headerReducer,
   globalFilms: globalSearcFilmshReducer,
   modal: modalReducer,
-  filmsAndSeries: sectionFilmsReducer,
-
+  sectionFilms: sectionFilmsReducer,
 });

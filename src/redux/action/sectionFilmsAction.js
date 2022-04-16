@@ -35,9 +35,9 @@ export const fetchFilmsAction = (numberPagination) => {
   return async (dispatch) => {
     try {
       dispatch(checkedFilmsLoadingAction());
-      await instance
+       await instance
         .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
-        .then((res) => dispatch(checkedFilmsErrorAction(res.data.films)));
+        .then((res) => dispatch(checkedFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
       console.log(error);

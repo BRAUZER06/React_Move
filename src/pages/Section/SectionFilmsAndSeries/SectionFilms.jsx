@@ -16,11 +16,12 @@ const SectionFilmsAndSeries = ({
   clickCartOpenModal,
 }) => {
   const dispatch = useDispatch();
-  const films = useSelector((state) => state.filmsAndSeries.films);
+  const films = useSelector((state) => state.sectionFilms.films);
   const { checkedFilms, error, loading } = useSelector(
-    (state) => state.filmsAndSeries
+    (state) => state.sectionFilms
   );
-
+    console.log(films);
+    console.log({checkedFilms, error, loading});
   React.useEffect(() => {
     dispatch(fetchFilmsAction(numberPagination));
 
@@ -30,7 +31,6 @@ const SectionFilmsAndSeries = ({
   if (loading) {
     return <IsLoadingPagesAnimation />;
   }
-
 
   return (
     <div className={styles.films}>

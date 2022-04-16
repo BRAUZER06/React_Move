@@ -30,7 +30,7 @@ export const sectionFilmsReducer = (state = initState, action) => {
       return {
         ...state,
         error: null,
-        loading: action.payload,
+        loading: true,
         //тут сделал пустой массив чтобы было видно загрузку фильмов
         films: [],
       };
