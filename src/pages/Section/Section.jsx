@@ -13,6 +13,7 @@ import {
 } from "../../redux/action/modalAction";
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilmsAndSeries";
 import FilmsSearchInput from "./FilmsSearchInput/FilmsSearchInput";
+import HomePages from "../HomePages/HomePages";
 
 const Section = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Section = () => {
   const [numberPagination, setNumberPagination] = React.useState(6);
   const inputSearchValue = useSelector((state) => state.header.inputValue);
 
-      //манипуляции для получения индекса пагинации
+  //манипуляции для получения индекса пагинации
   const onClickPaginateNumber = (e) => {
     setNumberPagination(Number(e.target.ariaLabel.slice(-1)));
   };
@@ -29,7 +30,7 @@ const Section = () => {
     dispatch(idFilmAction(id));
     dispatch(checkedModalAction(true));
   };
-  
+
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
@@ -40,6 +41,8 @@ const Section = () => {
       <ModalWindow />
 
       <Routes>
+        <Route path="/" element={<HomePages />} />
+
         <Route
           path="/FilmsAndSeries"
           element={
