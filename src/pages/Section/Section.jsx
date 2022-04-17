@@ -31,6 +31,7 @@ const Section = () => {
     dispatch(checkedModalAction(true));
   };
 
+  console.log("рендер Section ");
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>

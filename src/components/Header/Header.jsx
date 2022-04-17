@@ -13,6 +13,11 @@ import {
 } from "../../redux/action/headerAction";
 
 import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
+import {
+  fetchFilmsAndSeriesAction,
+  fetchTrailerAction,
+  fetchPremiereAction,
+} from "../../redux/action/sectionFilmsAction";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -23,7 +28,6 @@ const Header = () => {
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
-
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
@@ -56,9 +60,15 @@ const Header = () => {
   };
 
   const onClicHome = () => {};
-  const onClickFilmsAndSeries = () => {};
-  const onClickTrailer = () => {};
-  const onClickPremiere = () => {};
+  const onClickFilmsAndSeries = () => {
+ 
+  };
+  const onClickTrailer = () => {
+
+  };
+  const onClickPremiere = () => {
+   
+  };
   const onClickProfile = () => {};
 
   return (

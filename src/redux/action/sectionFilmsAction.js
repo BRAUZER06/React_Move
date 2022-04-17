@@ -18,10 +18,10 @@ export const checkedFilmsLoadingAction = (loading) => {
     type: GET_FILMS_LOADING,
   };
 };
-export const checkedFilmsSuccsesAction = (inputValue) => {
+export const addFilmsSuccsesAction = (arr) => {
   return {
     type: GET_FILMS_SUCCSES,
-    payload: inputValue,
+    payload: arr,
   };
 };
 export const checkedFilmsErrorAction = (error) => {
@@ -31,13 +31,61 @@ export const checkedFilmsErrorAction = (error) => {
   };
 };
 
+//Думал над тем чтобы скоратить этот код, с одной стороны удобство, а с другой оптимизация)
+
+//Запрос который просто получает фильмы
 export const fetchFilmsAction = (numberPagination) => {
   return async (dispatch) => {
     try {
       dispatch(checkedFilmsLoadingAction());
-       await instance
+      await instance
         .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
-        .then((res) => dispatch(checkedFilmsSuccsesAction(res.data.films)));
+        .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
+    } catch (error) {
+      dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
+      console.log(error);
+    }
+  };
+};
+
+//Запрос который получает фильмы для "Кино и Сериалы / FilmsAndSeries"
+export const fetchFilmsAndSeriesAction = (numberPagination) => {
+  return async (dispatch) => {
+    try {
+      dispatch(checkedFilmsLoadingAction());
+      await instance
+        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
+    } catch (error) {
+      dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
+      console.log(error);
+    }
+  };
+};
+
+//Запрос который получает фильмы для "Трейлер / Trailer"
+export const fetchTrailerAction = (numberPagination) => {
+  return async (dispatch) => {
+    try {
+      dispatch(checkedFilmsLoadingAction());
+      await instance
+        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
+    } catch (error) {
+      dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
+      console.log(error);
+    }
+  };
+};
+
+//Запрос который получает фильмы для "Кинопремьеры / Premiere"
+export const fetchPremiereAction = (numberPagination) => {
+  return async (dispatch) => {
+    try {
+      dispatch(checkedFilmsLoadingAction());
+      await instance
+        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
       console.log(error);

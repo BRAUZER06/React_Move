@@ -1,13 +1,15 @@
 import React from "react";
-import { instance } from "../../../config/axios";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
 import styles from "./SectionFilms.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
   checkedFilmsAction,
-  fetchFilmsAction,
+  fetchTrailerAction,
+  fetchPremiereAction,
+  fetchFilmsAndSeriesAction,
 } from "../../../redux/action/sectionFilmsAction";
+import { useLocation } from "react-router-dom";
 
 //при переходе на другую вкладку удалять старый массив с фильмами ( чтобы работала подгрузка и не засорял кеш)
 const SectionFilmsAndSeries = ({
@@ -15,18 +17,28 @@ const SectionFilmsAndSeries = ({
   inputSearchValue,
   clickCartOpenModal,
 }) => {
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const films = useSelector((state) => state.sectionFilms.films);
   const { checkedFilms, error, loading } = useSelector(
     (state) => state.sectionFilms
   );
-    console.log(films);
-    console.log({checkedFilms, error, loading});
+
+
+
+  console.log({ checkedFilms, error, loading, films});
   React.useEffect(() => {
-    dispatch(fetchFilmsAction(numberPagination));
+    console.log('рендер');
+    if (pathname === "/FilmsAndSeries") {
+      dispatch(fetchFilmsAndSeriesAction(numberPagination));
+    } else if (pathname === "/Trailer") {
+      dispatch(fetchTrailerAction(numberPagination));
+    } else if (pathname === "/Premiere") {
+      dispatch(fetchPremiereAction(numberPagination));
+    }
 
     return console.log("демонтажж");
-  }, [numberPagination, checkedFilms]);
+  }, [numberPagination, checkedFilms, pathname]);
 
   if (loading) {
     return <IsLoadingPagesAnimation />;

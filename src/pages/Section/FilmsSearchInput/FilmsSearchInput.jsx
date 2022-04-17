@@ -4,7 +4,6 @@ import styles from "./FilmsSearchInput.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  //СДЕЛАТЬ ОТДЕЛЬ ОТ FILMSANDSERIES
   checkedFilmsAction,
   fetchFilmsAction,
 } from "../../../redux/action/sectionFilmsAction";

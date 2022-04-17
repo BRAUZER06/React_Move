@@ -41,7 +41,7 @@ export const headerReducer = (state = initState, action) => {
         ...state,
         loading: false,
         error: action.payload,
-        //оставил стейт чтобы при ошибке поиска, пользователь не видел ошибку
+        //оставил стейт чтобы при ошибке поиска, пользователь видел старый контент
         films: [...state.films],
       };
 

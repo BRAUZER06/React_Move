@@ -22,8 +22,9 @@ export const sectionFilmsReducer = (state = initState, action) => {
         ...state,
         error: action.payload,
         loading: false,
-        //оставил стейт чтобы при ошибке поиска, пользователь не видел ошибку
-        films: [...state.films],
+        //оставил стейт чтобы при ошибке получ данных, пользователь видел старый контент
+        //  films: [...state.films]
+        films: [],
       };
 
     case GET_FILMS_LOADING:
@@ -32,6 +33,7 @@ export const sectionFilmsReducer = (state = initState, action) => {
         error: null,
         loading: true,
         //тут сделал пустой массив чтобы было видно загрузку фильмов
+        //[...state.films]
         films: [],
       };
 
