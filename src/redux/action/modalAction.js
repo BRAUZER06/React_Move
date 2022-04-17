@@ -1,4 +1,4 @@
-import { instance } from "../../config/axios";
+import { instanceV2_2 } from "../../config/axios";
 import {
   ID_FILM,
   CHECKED_MODAL,
@@ -43,8 +43,8 @@ export const fetchFilmAction = (idFilm) => {
   return async (dispatch) => {
     try {
       dispatch(fetchLoadinModalAction());
-      await instance
-        .get(`/v2.2/films/${idFilm}`)
+      await instanceV2_2
+        .get(`films/${idFilm}`)
         .then((res) => dispatch(fetchSuccsesModalAction(res.data)));
     } catch (error) {
       dispatch(fetchErrorModalAction("Ошибка при получении данных "));

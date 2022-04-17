@@ -2,7 +2,7 @@ import classNames from "classname";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import React from "react";
-import { instance_modalId } from "../../config/axios";
+import { instanceV2_2 } from "../../config/axios";
 import styles from "./ModalWindow.module.scss";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -49,8 +49,8 @@ const ModalWindow = () => {
   const onClickFetchhDetailMove = async () => {
     setDetaliCheck((detaliCheck) => !detaliCheck);
     try {
-      await instance_modalId
-        .get(`/${idFilm}/images`)
+      await instanceV2_2
+        .get(`films/${idFilm}/images`)
         .then((resp) => setDetali(resp.data.items));
     } catch (error) {
       alert("Подробная информация не доступна ");

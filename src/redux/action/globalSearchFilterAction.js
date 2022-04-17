@@ -1,4 +1,4 @@
-import { instance } from "../../config/axios";
+import { instanceV2_2 } from "../../config/axios";
 import {
   CHECK_MENU_GLOBAL,
   CHECK_FILMS_GLOBAL,
@@ -31,8 +31,8 @@ export const fetchGlobalFilmsAction = (text) => {
     try {
       //Исправить/найти альтернативу
       dispatch(fetchGlobalMenuLoadingAction());
-      const response = await instance.get(
-        `/v2.2/films?${text.sort.length && `order=${text.sort}`}${
+      const response = await instanceV2_2.get(
+        `/films?${text.sort.length && `order=${text.sort}`}${
           text.tipe.length && `&type=${text.tipe}`
         }${text.minRating.length && `&ratingFrom=${text.minRating}`}${
           text.maxRating.length && `&ratingTo=${text.maxRating}`

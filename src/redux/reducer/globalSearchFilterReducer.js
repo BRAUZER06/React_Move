@@ -34,11 +34,10 @@ export const globalSearcFilmshReducer = (state = initState, action) => {
       return {
         ...state,
         checkedFilms: action.payload,
-        films: [...state.films],
       };
 
     case CHECK_MENU_GLOBAL:
-      return { ...state, checkedMenu: action.payload, films: [...state.films] };
+      return { ...state, checkedMenu: action.payload };
 
     default:
       return state;

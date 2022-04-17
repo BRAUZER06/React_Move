@@ -5,12 +5,12 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
 import {
   fetchGlobalFilmsAction,
-  globalCheckedFilmsAction,
   globalCheckedMenuAction,
 } from "../../../redux/action/globalSearchFilterAction";
-import { headerCheckedFilmsAction } from "../../../redux/action/headerAction";
+import { useNavigate } from "react-router-dom";
 
 const GlobalSearchFilter = () => {
+  const navigate = useNavigate()
   const { checkedMenu } = useSelector((state) => state.globalFilms);
   const dispatch = useDispatch();
   const [params, serParams] = React.useState({
@@ -23,11 +23,11 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  //скрывает показ фильмов по поиску через инпут если он открыт, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
-  const onClickFetchFilms = () => {
-    dispatch(headerCheckedFilmsAction(false));
-    dispatch(fetchGlobalFilmsAction(params));
-    dispatch(globalCheckedFilmsAction(true));
+  //скрывает показ фильмов по поиску через инпут, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
+  const onClickFetchFilms = async() => {
+    await dispatch(fetchGlobalFilmsAction(params));
+    dispatch(globalCheckedMenuAction(false))
+    navigate('/SectionGlobalSearch')
   };
 
   const checkedToggleGlobalSearch = () => {
@@ -60,7 +60,7 @@ const GlobalSearchFilter = () => {
                   styles.GlobalSearchInput__inputs_list
                 )}
               >
-                <p>Сортировка по</p>
+                <p>Сортировка по: (багуется)</p>
                 <input
                   name="sort"
                   value={params.sort}
@@ -81,7 +81,7 @@ const GlobalSearchFilter = () => {
                   styles.GlobalSearchInput__inputs_list
                 )}
               >
-                <p>Тип Фильма:</p>
+                <p>Тип Фильма: (багуется)</p>
                 <input
                   name="tipe"
                   value={params.tipe}

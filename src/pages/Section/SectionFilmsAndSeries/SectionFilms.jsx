@@ -4,16 +4,13 @@ import styles from "./SectionFilms.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkedFilmsAction,
-  fetchFilmsAction,
+  fetchTrailerAction,
+  fetchPremiereAction,
+  fetchFilmsAndSeriesAction,
 } from "../../../redux/action/sectionFilmsAction";
 import { useLocation } from "react-router-dom";
-import {
-  instance_FilmsAndSeries,
-  instance_Trailer,
-  instance_Premiere,
-} from "../../../config/axios";
 
+//при переходе на другую вкладку удалять старый массив с фильмами ( чтобы работала подгрузка и не засорял кеш)
 const SectionFilmsAndSeries = ({
   numberPagination,
   inputSearchValue,
@@ -26,23 +23,22 @@ const SectionFilmsAndSeries = ({
     (state) => state.sectionFilms
   );
 
+
+
+
   React.useEffect(() => {
-    //Сравнивание ссылки url и прокидывания номер пагинации и url в Аction
+    console.log('рендер');
     if (pathname === "/FilmsAndSeries") {
-      dispatch(fetchFilmsAction(numberPagination, instance_FilmsAndSeries));
+      dispatch(fetchFilmsAndSeriesAction(numberPagination));
     } else if (pathname === "/Trailer") {
-      dispatch(fetchFilmsAction(numberPagination, instance_Trailer));
+      dispatch(fetchTrailerAction(numberPagination));
     } else if (pathname === "/Premiere") {
-      dispatch(fetchFilmsAction(numberPagination, instance_Premiere));
+      dispatch(fetchPremiereAction(numberPagination));
     }
 
     return console.log("демонтажж");
   }, [numberPagination, checkedFilms, pathname]);
 
-  //оптимизировать
-  // if (error) {
-  //   alert(error);
-  // }
   if (loading) {
     return <IsLoadingPagesAnimation />;
   }

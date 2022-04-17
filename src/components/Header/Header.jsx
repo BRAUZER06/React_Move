@@ -1,5 +1,5 @@
 import classNames from "classname";
-import React, { useRef } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,22 +13,16 @@ import {
 } from "../../redux/action/headerAction";
 
 import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
-import {
-  fetchFilmsAndSeriesAction,
-  fetchTrailerAction,
-  fetchPremiereAction,
-} from "../../redux/action/sectionFilmsAction";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const refInputCheck = useRef(null);
+  const refInputCheck = React.useRef(null);
 
   const inputValue = useSelector((state) => state.header.inputValue);
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
-
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
@@ -54,13 +48,11 @@ const Header = () => {
     dispatch(headerCheckedInputAction(true));
   };
 
-  
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
     dispatch(headerCheckedInputAction(false));
     dispatch(headerInputValueAction(""));
   };
-
 
   const onClicHome = () => {};
   const onClickFilmsAndSeries = () => {};

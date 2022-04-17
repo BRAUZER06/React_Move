@@ -28,7 +28,7 @@ const SectionProfile = () => {
         <FaInstagramSquare />
         <a href="https://www.instagram.com/gelathoev/">Инстаграм</a>
       </h2>
-      <h2> 
+      <h2>
         <FaMailchimp />
         <a href="https://nazran.hh.ru/resume/c6c57860ff09c0f3280039ed1f664342796742">
           HeadHunter

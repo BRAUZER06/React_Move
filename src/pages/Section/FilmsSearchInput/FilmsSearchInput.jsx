@@ -4,26 +4,21 @@ import styles from "./FilmsSearchInput.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  checkedFilmsAction,
-  fetchFilmsAction,
-} from "../../../redux/action/sectionFilmsAction";
-import { headerCheckedFilmsAction } from "../../../redux/action/headerAction";
+  headerCheckedFilmsAction,
+  fetchFilmsInputTextAction,
+} from "../../../redux/action/headerAction";
 
-const FilmsSearchInput = ({
-  numberPagination,
-  inputSearchValue,
-  clickCartOpenModal,
-}) => {
+const FilmsSearchInput = ({ inputSearchValue, clickCartOpenModal }) => {
   const dispatch = useDispatch();
   const films = useSelector((state) => state.header.films);
   const { checkedFilms, loading, error } = useSelector((state) => state.header);
 
   React.useEffect(() => {
-    dispatch(fetchFilmsAction(inputSearchValue));
+    dispatch(fetchFilmsInputTextAction(inputSearchValue));
     return () => {
       dispatch(headerCheckedFilmsAction(false));
     };
-  }, [numberPagination, checkedFilms]);
+  }, [checkedFilms]);
 
   if (loading) {
     return <IsLoadingPagesAnimation />;

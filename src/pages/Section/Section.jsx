@@ -4,9 +4,7 @@ import ModalWindow from "../Modal/ModalWindow";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import SectionProfile from "./SectionProfile/SectionProfile";
-
 import { Route, Routes, useLocation } from "react-router-dom";
-
 import {
   idFilmAction,
   checkedModalAction,
@@ -14,6 +12,7 @@ import {
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilms";
 import FilmsSearchInput from "./FilmsSearchInput/FilmsSearchInput";
 import HomePages from "../HomePages/HomePages";
+import SectionGlobalSearch from "./SectionGlobalSearch/SectionGlobalSearch";
 
 const Section = () => {
   const dispatch = useDispatch();
@@ -31,14 +30,19 @@ const Section = () => {
     dispatch(checkedModalAction(true));
   };
 
-  console.log("рендер Section ");
+  const pathnameDeletedPages = () => {
+    if (
+      pathname !== "/" &&
+      pathname !== "/Profile" &&
+      pathname !== "/FilmsSearchInput" &&
+      pathname !== "/SectionGlobalSearch"
+    )
+      return <Pagination onClickPaginateNumber={onClickPaginateNumber} />;
+  };
+
   return (
     <div className={styles.Section}>
-      <div className={styles.Section_Pagination}>
-        {pathname !== "/" && (
-          <Pagination onClickPaginateNumber={onClickPaginateNumber} />
-        )}
-      </div>
+      <div className={styles.Section_Pagination}>{pathnameDeletedPages()}</div>
       <ModalWindow />
 
       <Routes>
@@ -80,15 +84,14 @@ const Section = () => {
             <FilmsSearchInput
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
-              numberPagination={numberPagination}
             />
           }
         />
         {/* FilmsSearchFilter */}
         <Route
-          path="/FilmsSearchFilter"
+          path="/SectionGlobalSearch"
           element={
-            <FilmsSearchInput
+            <SectionGlobalSearch
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}
