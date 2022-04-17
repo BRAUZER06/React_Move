@@ -1,4 +1,4 @@
-import { instanceV2_1 } from "../../config/axios";
+import { instance } from "../../config/axios";
 import {
   CHECK_INPUT_HEADER,
   CHECK_FILMS_HEADER,
@@ -32,8 +32,8 @@ export const fetchFilmsInputTextAction = (inputValue) => {
   return async (dispatch) => {
     try {
       dispatch(fetchSearchInputFilmsLoadingAction());
-      await instanceV2_1
-        .get(`/films/search-by-keyword?keyword=${inputValue}`)
+      await instance
+        .get(`/v2.1/films/search-by-keyword?keyword=${inputValue}`)
         .then((res) =>
           dispatch(fetchSearchInputFilmsSuccsesAction(res.data.films))
         );

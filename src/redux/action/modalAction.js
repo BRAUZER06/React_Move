@@ -44,7 +44,7 @@ export const fetchFilmAction = (idFilm) => {
     try {
       dispatch(fetchLoadinModalAction());
       await instance
-        .get(`films/${idFilm}`)
+        .get(`/v2.2/films/${idFilm}`)
         .then((res) => dispatch(fetchSuccsesModalAction(res.data)));
     } catch (error) {
       dispatch(fetchErrorModalAction("Ошибка при получении данных "));

@@ -28,6 +28,7 @@ const Header = () => {
   const { error, loading, films, checkedFilms, checkInput } = useSelector(
     (state) => state.header
   );
+
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
   };
@@ -53,22 +54,18 @@ const Header = () => {
     dispatch(headerCheckedInputAction(true));
   };
 
+  
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
     dispatch(headerCheckedInputAction(false));
     dispatch(headerInputValueAction(""));
   };
 
-  const onClicHome = () => {};
-  const onClickFilmsAndSeries = () => {
- 
-  };
-  const onClickTrailer = () => {
 
-  };
-  const onClickPremiere = () => {
-   
-  };
+  const onClicHome = () => {};
+  const onClickFilmsAndSeries = () => {};
+  const onClickTrailer = () => {};
+  const onClickPremiere = () => {};
   const onClickProfile = () => {};
 
   return (

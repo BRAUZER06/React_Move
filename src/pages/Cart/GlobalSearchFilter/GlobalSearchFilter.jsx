@@ -23,7 +23,7 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  //скрывает показ фильмов по поиску через инпут, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
+  //скрывает показ фильмов по поиску через инпут если он открыт, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
   const onClickFetchFilms = () => {
     dispatch(headerCheckedFilmsAction(false));
     dispatch(fetchGlobalFilmsAction(params));

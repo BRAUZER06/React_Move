@@ -32,7 +32,7 @@ export const fetchGlobalFilmsAction = (text) => {
       //Исправить/найти альтернативу
       dispatch(fetchGlobalMenuLoadingAction());
       const response = await instance.get(
-        `/films?${text.sort.length && `order=${text.sort}`}${
+        `/v2.2/films?${text.sort.length && `order=${text.sort}`}${
           text.tipe.length && `&type=${text.tipe}`
         }${text.minRating.length && `&ratingFrom=${text.minRating}`}${
           text.maxRating.length && `&ratingTo=${text.maxRating}`
