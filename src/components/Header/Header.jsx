@@ -67,7 +67,7 @@ const Header = () => {
           <Link
             onClick={onClicHome}
             className={styles.header__divItems_h2}
-            to="/"
+            to="/React_Move/"
           >
             Fil'mets
           </Link>

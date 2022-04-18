@@ -2,7 +2,7 @@
 /* font-family: 'Montserrat', sans-serif;
 font-family: 'Roboto', sans-serif; */
 body{
-  min-height: 100vh;
+  min-height: 120vh;
   font-family: 'Roboto', sans-serif;
   background: rgb(165,123,168);
   background: linear-gradient(180deg, rgb(168, 109, 172) 0%, rgba(56,0,108,1) 100%);

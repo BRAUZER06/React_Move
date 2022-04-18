@@ -45,7 +45,7 @@ const Section = () => {
       <ModalWindow />
 
       <Routes>
-        <Route path="/" element={<HomePages />} />
+        <Route path="/React_Move/" element={<HomePages />} />
 
         <Route
           path="/FilmsAndSeries"

@@ -7,15 +7,11 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate;
-  React.useEffect(() => {
-    // alert("Ограничение в api не дали реализовать весь потенциал  :)");
-  }, []);
-  navigate("/FilmsAndSeries");
-
+  React.useEffect(() => {}, []);
+  navigate("/React_Move/");
   return (
     <div className="App">
       <Header />
-
       <Section />
     </div>
   );
