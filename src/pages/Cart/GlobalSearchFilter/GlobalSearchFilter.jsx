@@ -5,12 +5,13 @@ import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
 import {
   fetchGlobalFilmsAction,
+  globalMenuAddTextAction,
   globalCheckedMenuAction,
 } from "../../../redux/action/globalSearchFilterAction";
 import { useNavigate } from "react-router-dom";
 
 const GlobalSearchFilter = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { checkedMenu } = useSelector((state) => state.globalFilms);
   const dispatch = useDispatch();
   const [params, serParams] = React.useState({
@@ -24,10 +25,10 @@ const GlobalSearchFilter = () => {
   });
 
   //скрывает показ фильмов по поиску через инпут, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
-  const onClickFetchFilms = async() => {
-    await dispatch(fetchGlobalFilmsAction(params));
-    dispatch(globalCheckedMenuAction(false))
-    navigate('/SectionGlobalSearch')
+  const onClickFetchFilms = () => {
+    dispatch(globalMenuAddTextAction(params));
+
+    navigate("/SectionGlobalSearch");
   };
 
   const checkedToggleGlobalSearch = () => {

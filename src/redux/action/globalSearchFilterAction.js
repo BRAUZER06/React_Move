@@ -1,11 +1,16 @@
 import { instanceV2_2 } from "../../config/axios";
 import {
+  ADD_FILTER_TEXT_GLOBAL,
   CHECK_MENU_GLOBAL,
   CHECK_FILMS_GLOBAL,
   GET_FILMS_GLOBAL_ERROR,
   GET_FILMS_GLOBAL_LOADING,
   GET_FILMS_GLOBAL_SUCCSES,
 } from "../actionTypes";
+
+export const globalMenuAddTextAction = (text) => {
+  return { type: ADD_FILTER_TEXT_GLOBAL, payload: text };
+};
 
 export const globalCheckedFilmsAction = (checked) => {
   return { type: CHECK_FILMS_GLOBAL, payload: checked };
@@ -26,7 +31,7 @@ export const fetchGlobalMenuSuccsesAction = (arr) => {
   return { type: GET_FILMS_GLOBAL_SUCCSES, payload: arr };
 };
 
-export const fetchGlobalFilmsAction = (text) => {
+export const fetchGlobalFilmsAction = (text, numberPagination) => {
   return async (dispatch) => {
     try {
       //Исправить/найти альтернативу
@@ -38,7 +43,9 @@ export const fetchGlobalFilmsAction = (text) => {
           text.maxRating.length && `&ratingTo=${text.maxRating}`
         }${text.minYear.length && `&yearFrom=${text.minYear}`}${
           text.maxYear.length && `&yearTo=${text.maxYear}`
-        }${text.keyword.length && `&keyword=${text.keyword}`}&page=1`
+        }${
+          text.keyword.length && `&keyword=${text.keyword}`
+        }&page=${numberPagination}`
       );
       dispatch(fetchGlobalMenuSuccsesAction(response.data.items));
       globalCheckedFilmsAction(true);

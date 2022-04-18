@@ -139,15 +139,19 @@ const ModalWindow = () => {
 
             {detaliCheck && (
               <div className={styles.detaliModal}>
-                {detali.map((e, i) => (
-                  <div key={i}>
-                    <img
-                      className={styles.detaliModal_img}
-                      src={e.previewUrl}
-                      alt="Фото"
-                    ></img>
-                  </div>
-                ))}
+                {detali.length ? (
+                  detali.map((e, i) => (
+                    <div key={i}>
+                      <img
+                        className={styles.detaliModal_img}
+                        src={e.previewUrl}
+                        alt="Фото"
+                      ></img>
+                    </div>
+                  ))
+                ) : (
+                  <p>Подробная информация отсуствует</p>
+                )}
               </div>
             )}
           </div>

@@ -10,7 +10,7 @@ import {
   checkedModalAction,
 } from "../../redux/action/modalAction";
 import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilms";
-import FilmsSearchInput from "./FilmsSearchInput/FilmsSearchInput";
+import FilmsSearchInput from "./SectionFilmsSearchInput/SectionFilmsSearchInput";
 import HomePages from "../HomePages/HomePages";
 import SectionGlobalSearch from "./SectionGlobalSearch/SectionGlobalSearch";
 
@@ -30,19 +30,17 @@ const Section = () => {
     dispatch(checkedModalAction(true));
   };
 
-  const pathnameDeletedPages = () => {
-    if (
-      pathname !== "/" &&
-      pathname !== "/Profile" &&
-      pathname !== "/FilmsSearchInput" &&
-      pathname !== "/SectionGlobalSearch"
-    )
-      return <Pagination onClickPaginateNumber={onClickPaginateNumber} />;
-  };
-
   return (
     <div className={styles.Section}>
-      <div className={styles.Section_Pagination}>{pathnameDeletedPages()}</div>
+      <div className={styles.Section_Pagination}>
+        {pathname === "/FilmsAndSeries" ||
+        pathname === "/Trailer" ||
+        pathname === "/SectionGlobalSearch" ? (
+          <Pagination onClickPaginateNumber={onClickPaginateNumber} />
+        ) : (
+          ""
+        )}
+      </div>
       <ModalWindow />
 
       <Routes>

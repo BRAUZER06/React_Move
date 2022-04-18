@@ -1,4 +1,5 @@
 import {
+  ADD_FILTER_TEXT_GLOBAL,
   CHECK_MENU_GLOBAL,
   CHECK_FILMS_GLOBAL,
   GET_FILMS_GLOBAL_ERROR,
@@ -12,10 +13,22 @@ const initState = {
   loading: false,
   checkedFilms: false,
   checkedMenu: false,
+  params: {
+    sort: "",
+    tipe: "",
+    minRating: "",
+    maxRating: "",
+    minYear: "",
+    maxYear: "",
+    keyword: "",
+  },
 };
 
 export const globalSearcFilmshReducer = (state = initState, action) => {
   switch (action.type) {
+    case ADD_FILTER_TEXT_GLOBAL:
+      return { ...state, params: action.payload  };
+
     case GET_FILMS_GLOBAL_LOADING:
       return { ...state, loading: true, error: null, films: [] };
 

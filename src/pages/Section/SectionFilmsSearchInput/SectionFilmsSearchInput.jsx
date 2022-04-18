@@ -1,6 +1,6 @@
 import React from "react";
 import FilmCart from "../../Cart/FilmCart/FilmCart";
-import styles from "./FilmsSearchInput.module.scss";
+import styles from "./SectionFilmsSearchInput.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +8,7 @@ import {
   fetchFilmsInputTextAction,
 } from "../../../redux/action/headerAction";
 
-const FilmsSearchInput = ({ inputSearchValue, clickCartOpenModal }) => {
+const SectionFilmsSearchInput = ({ inputSearchValue, clickCartOpenModal }) => {
   const dispatch = useDispatch();
   const films = useSelector((state) => state.header.films);
   const { checkedFilms, loading, error } = useSelector((state) => state.header);
@@ -56,4 +56,4 @@ const FilmsSearchInput = ({ inputSearchValue, clickCartOpenModal }) => {
   );
 };
 
-export default FilmsSearchInput;
+export default SectionFilmsSearchInput;
