@@ -40,7 +40,7 @@ export const fetchFilmsAction = (numberPagination) => {
     try {
       dispatch(checkedFilmsLoadingAction());
       await instanceV2_2
-        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .get(`/films/top?type=TOP_250_POPULAR_FILMS&page=${numberPagination}`)
         .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
@@ -55,7 +55,7 @@ export const fetchFilmsAndSeriesAction = (numberPagination) => {
     try {
       dispatch(checkedFilmsLoadingAction());
       await instanceV2_2
-        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .get(`/films/top?type=TOP_250_BEST_FILMS&page=${numberPagination}`)
         .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
@@ -85,7 +85,7 @@ export const fetchPremiereAction = (numberPagination) => {
     try {
       dispatch(checkedFilmsLoadingAction());
       await instanceV2_2
-        .get(`/films/top?type=TOP_100_POPULAR_FILMS&page=${numberPagination}`)
+        .get(`/films/top?type=TOP_AWAIT_FILMS&page=${numberPagination}`)
         .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
