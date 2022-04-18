@@ -59,6 +59,7 @@ const ModalWindow = () => {
   };
 
   React.useEffect(() => {
+    //если id нет то не прокидывай его в модалку для поиска
     if (!idFilm.length) {
       dispatch(fetchFilmAction(idFilm));
     }

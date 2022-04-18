@@ -4,33 +4,24 @@ import styles from "./SectionGlobalSearch.module.scss";
 import IsLoadingPagesAnimation from "../../IsLoadingPagesAnimation/IsLoadingPagesAnimation";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {
-  fetchGlobalFilmsAction,
-  globalCheckedMenuAction,
-} from "../../../redux/action/globalSearchFilterAction";
+import { fetchGlobalFilmsAction } from "../../../redux/action/globalSearchFilterAction";
 
 const SectionGlobalSearch = ({ clickCartOpenModal, numberPagination }) => {
   const dispatch = useDispatch();
   const films = useSelector((state) => state.globalFilms.films);
-  const { checkedFilms, loading, error, params } = useSelector(
-    (state) => state.globalFilms
-  );
+  const { loading, error, params } = useSelector((state) => state.globalFilms);
 
   React.useEffect(() => {
-    console.log("рендер" + params);
     dispatch(fetchGlobalFilmsAction(params, numberPagination));
   }, [numberPagination, params]);
 
-  console.log("рендер");
   if (loading) {
     return <IsLoadingPagesAnimation />;
   }
-  console.log(params);
-  console.log(films);
   if (!films.length) {
     return <h1>Поиск не дал результатов</h1>;
   }
-  console.log(films[1]);
+
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>

@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaGlobeAmericas } from "react-icons/fa";
 import styles from "./GlobalSearchFilter.module.scss";
 import {
-  fetchGlobalFilmsAction,
   globalMenuAddTextAction,
   globalCheckedMenuAction,
 } from "../../../redux/action/globalSearchFilterAction";

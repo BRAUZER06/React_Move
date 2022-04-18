@@ -33,7 +33,8 @@ const Section = () => {
   return (
     <div className={styles.Section}>
       <div className={styles.Section_Pagination}>
-        {pathname === "/FilmsAndSeries" ||
+        {pathname === "/Trailer" ||
+        pathname === "/FilmsAndSeries" ||
         pathname === "/Trailer" ||
         pathname === "/SectionGlobalSearch" ? (
           <Pagination onClickPaginateNumber={onClickPaginateNumber} />

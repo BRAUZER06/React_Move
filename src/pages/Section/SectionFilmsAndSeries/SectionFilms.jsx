@@ -42,6 +42,9 @@ const SectionFilmsAndSeries = ({
   if (loading) {
     return <IsLoadingPagesAnimation />;
   }
+  if (!films.length) {
+    return <h1>Поиск не дал результатов</h1>;
+  }
 
   return (
     <div className={styles.films}>
