@@ -23,8 +23,8 @@ const GlobalSearchFilter = () => {
     keyword: "",
   });
 
-  //скрывает показ фильмов по поиску через инпут, прокидывает объект с текстом в функцию с get запросом и показывает фильмы
   const onClickFetchFilms = () => {
+    //это нужно для получения стейта в редюс  и для дальнейшего поиска фильмов при рендере компонента
     dispatch(globalMenuAddTextAction(params));
 
     navigate("/SectionGlobalSearch");

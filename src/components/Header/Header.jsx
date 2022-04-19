@@ -7,12 +7,9 @@ import { FaRegUserCircle, FaSearch, FaPlus } from "react-icons/fa";
 import GlobalSearchFilter from "../../pages/Cart/GlobalSearchFilter/GlobalSearchFilter";
 import {
   headerInputValueAction,
-  headerCheckedFilmsAction,
-  fetchFilmsInputTextAction,
   headerCheckedInputAction,
+  headerCheckedFilmsAction,
 } from "../../redux/action/headerAction";
-
-import { globalCheckedFilmsAction } from "../../redux/action/globalSearchFilterAction";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -20,26 +17,26 @@ const Header = () => {
   const refInputCheck = React.useRef(null);
 
   const inputValue = useSelector((state) => state.header.inputValue);
-  const { error, loading, films, checkedFilms, checkInput } = useSelector(
-    (state) => state.header
-  );
+  const { checkInput } = useSelector((state) => state.header);
   const onChangeInputSearch = (e) => {
     dispatch(headerInputValueAction(e.target.value));
+    // мы убираем просотр фильмов по "поиску фильмов с текстом в инпуте" если текст будет удалятьсяы
+    if (inputValue.length > e.target.value.length) {
+      dispatch(headerCheckedFilmsAction(false));
+    }
   };
 
   //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
     if (e.code === "Enter") {
-      dispatch(globalCheckedFilmsAction(false));
-      dispatch(fetchFilmsInputTextAction(inputValue));
       dispatch(headerCheckedFilmsAction(true));
       navigate("/FilmsSearchInput");
-
       if (!inputValue) {
         navigate("/FilmsAndSeries");
       }
     }
   };
+  console.log("рендер Header");
 
   //фокусируется на инпут если нажать на рядом лежащий элемент
   const onClickInputSearch = () => {
@@ -51,6 +48,7 @@ const Header = () => {
   // закрытие input при нажатии на  X
   const onClickCloseInput = () => {
     dispatch(headerCheckedInputAction(false));
+    dispatch(headerCheckedFilmsAction(false));
     dispatch(headerInputValueAction(""));
   };
 

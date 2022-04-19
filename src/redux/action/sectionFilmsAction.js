@@ -1,4 +1,4 @@
-import { instanceV2_2 } from "../../config/axios";
+import { instanceV2_1, instanceV2_2 } from "../../config/axios";
 import {
   CHECKED_FILMS,
   GET_FILMS_ERROR,
@@ -86,6 +86,21 @@ export const fetchPremiereAction = (numberPagination) => {
       dispatch(checkedFilmsLoadingAction());
       await instanceV2_2
         .get(`/films/top?type=TOP_AWAIT_FILMS&page=1`)
+        .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
+    } catch (error) {
+      dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));
+      console.log(error);
+    }
+  };
+};
+
+//Запрос который получает фильмы по тексту 'FilmsSearchInput'
+export const fetchSearchInputAction = (inputValue) => {
+  return async (dispatch) => {
+    try {
+      dispatch(checkedFilmsLoadingAction());
+      await instanceV2_1
+        .get(`/films/search-by-keyword?keyword=${inputValue}`)
         .then((res) => dispatch(addFilmsSuccsesAction(res.data.films)));
     } catch (error) {
       dispatch(checkedFilmsErrorAction("Ошибка при получении данных"));

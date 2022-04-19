@@ -7,33 +7,37 @@ import {
   fetchTrailerAction,
   fetchPremiereAction,
   fetchFilmsAndSeriesAction,
+  fetchSearchInputAction,
 } from "../../../redux/action/sectionFilmsAction";
 import { useLocation } from "react-router-dom";
 
-//при переходе на другую вкладку удалять старый массив с фильмами ( чтобы работала подгрузка и не засорял кеш)
-const SectionFilmsAndSeries = ({
+const SectionFilms = ({
   numberPagination,
   inputSearchValue,
   clickCartOpenModal,
 }) => {
-  const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
   const films = useSelector((state) => state.sectionFilms.films);
   const { checkedFilms, error, loading } = useSelector(
     (state) => state.sectionFilms
   );
-
-
-
+  const inputValue = useSelector((state) => state.header.inputValue);
+  const inputValueCheckedFilms = useSelector(
+    (state) => state.header.checkedFilms
+  );
 
   React.useEffect(() => {
-    console.log('рендер');
+    console.log("рендер");
     if (pathname === "/FilmsAndSeries") {
       dispatch(fetchFilmsAndSeriesAction(numberPagination));
     } else if (pathname === "/Trailer") {
       dispatch(fetchTrailerAction(numberPagination));
     } else if (pathname === "/Premiere") {
       dispatch(fetchPremiereAction(numberPagination));
+    } else if (pathname === "/FilmsSearchInput") {
+      dispatch(fetchSearchInputAction(inputValue));
     }
 
     return console.log("демонтажж");
@@ -46,10 +50,17 @@ const SectionFilmsAndSeries = ({
     return <h1>Поиск не дал результатов</h1>;
   }
 
+  //вот это пожалуй я переделаю
   return (
     <div className={styles.films}>
       <div className={styles.films_container}>
-        {checkedFilms ? (
+        {inputValueCheckedFilms ? (
+          films.map((e) => (
+            <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
+              <FilmCart {...e} />
+            </div>
+          ))
+        ) : checkedFilms ? (
           films.map((e) => (
             <div key={e.filmId} onClick={() => clickCartOpenModal(e.filmId)}>
               <FilmCart {...e} />
@@ -78,4 +89,4 @@ const SectionFilmsAndSeries = ({
   );
 };
 
-export default SectionFilmsAndSeries;
+export default SectionFilms;

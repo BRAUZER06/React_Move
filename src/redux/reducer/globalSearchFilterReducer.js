@@ -27,7 +27,7 @@ const initState = {
 export const globalSearcFilmshReducer = (state = initState, action) => {
   switch (action.type) {
     case ADD_FILTER_TEXT_GLOBAL:
-      return { ...state, params: action.payload  };
+      return { ...state, params: action.payload };
 
     case GET_FILMS_GLOBAL_LOADING:
       return { ...state, loading: true, error: null, films: [] };

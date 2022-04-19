@@ -9,8 +9,7 @@ import {
   idFilmAction,
   checkedModalAction,
 } from "../../redux/action/modalAction";
-import SectionFilmsAndSeries from "./SectionFilmsAndSeries/SectionFilms";
-import FilmsSearchInput from "./SectionFilmsSearchInput/SectionFilmsSearchInput";
+import SectionFilms from "./SectionFilms/SectionFilms";
 import HomePages from "../HomePages/HomePages";
 import SectionGlobalSearch from "./SectionGlobalSearch/SectionGlobalSearch";
 
@@ -50,7 +49,7 @@ const Section = () => {
         <Route
           path="/FilmsAndSeries"
           element={
-            <SectionFilmsAndSeries
+            <SectionFilms
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}
@@ -60,7 +59,7 @@ const Section = () => {
         <Route
           path="/Trailer"
           element={
-            <SectionFilmsAndSeries
+            <SectionFilms
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}
@@ -70,7 +69,7 @@ const Section = () => {
         <Route
           path="/Premiere"
           element={
-            <SectionFilmsAndSeries
+            <SectionFilms
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
               numberPagination={numberPagination}
@@ -80,7 +79,7 @@ const Section = () => {
         <Route
           path="/FilmsSearchInput"
           element={
-            <FilmsSearchInput
+            <SectionFilms
               clickCartOpenModal={clickCartOpenModal}
               inputSearchValue={inputSearchValue}
             />
