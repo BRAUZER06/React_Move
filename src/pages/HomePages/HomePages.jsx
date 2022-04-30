@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./HomePages.module.scss";
 
 const HomePages = () => {
-  console.log("ОШИБКИ ИЗ-ЗА ВИДЕОРОЛИКА");
   return (
     <div className={styles.content}>
       <iframe

@@ -34,24 +34,26 @@ const style = {
 
 const ModalWindow = () => {
   const dispatch = useDispatch();
-  const [detali, setDetali] = React.useState([]);
-  const [detaliCheck, setDetaliCheck] = React.useState(false);
+  const [details, setDetails] = React.useState([]);
+  const [detailsCheck, setDetailsCheck] = React.useState(false);
   const { checked, idFilm, infoFilm } = useSelector((state) => state.modal);
 
   //закрытие modalWindow
   const handleClose = () => {
-    setDetaliCheck(false);
+    setDetailsCheck(false);
     dispatch(checkedModalAction(false));
     dispatch(idFilmAction(""));
   };
 
+  
   //допольнительная информация о фильме при нажатии на 'Подробнее'
+  // думал над удобством, слишком много redux не хорошо )
   const onClickFetchhDetailMove = async () => {
-    setDetaliCheck((detaliCheck) => !detaliCheck);
+    setDetailsCheck((detailsCheck) => !detailsCheck);
     try {
       await instanceV2_2
         .get(`films/${idFilm}/images`)
-        .then((resp) => setDetali(resp.data.items));
+        .then((resp) => setDetails(resp.data.items));
     } catch (error) {
       alert("Подробная информация не доступна ");
       console.log(error);
@@ -89,7 +91,7 @@ const ModalWindow = () => {
               <p
                 className={classNames(
                   styles.modalLeft_acteri_icon,
-                  detaliCheck && styles.modalLeft_acteri_icon_active
+                  detailsCheck && styles.modalLeft_acteri_icon_active
                 )}
               >
                 <AiOutlineCaretDown />
@@ -138,10 +140,10 @@ const ModalWindow = () => {
               <span>Подробнее:</span> {infoFilm.description}
             </p>
 
-            {detaliCheck && (
+            {detailsCheck && (
               <div className={styles.detaliModal}>
-                {detali.length ? (
-                  detali.map((e, i) => (
+                {details.length ? (
+                  details.map((e, i) => (
                     <div key={i}>
                       <img
                         className={styles.detaliModal_img}

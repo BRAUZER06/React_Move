@@ -36,9 +36,7 @@ const SectionFilms = ({
       dispatch(fetchTrailerAction(numberPagination));
     } else if (pathname === "/Premiere") {
       dispatch(fetchPremiereAction(numberPagination));
-    } else if (pathname === "/FilmsSearchInput") {
-      dispatch(fetchSearchInputAction(inputValue));
-    }
+    } 
 
     return console.log("демонтажж");
   }, [numberPagination, checkedFilms, pathname]);
@@ -48,6 +46,9 @@ const SectionFilms = ({
   }
   if (!films.length) {
     return <h1>Поиск не дал результатов</h1>;
+  }
+  if (error) {
+    return <h1>Фильмы отсутсвуют</h1>;
   }
 
   //вот это пожалуй я переделаю
@@ -69,10 +70,11 @@ const SectionFilms = ({
         ) : (
           <>
             {films
-              .filter((item) =>
-                item.nameRu
-                  .toLowerCase()
-                  .includes(inputSearchValue.toLowerCase())
+              .filter(
+                (item) =>
+                  item.nameRu && item.nameRu
+                    .toLowerCase()
+                    .includes(inputSearchValue.toLowerCase())
               )
               .map((e) => (
                 <div

@@ -10,6 +10,7 @@ import {
   headerCheckedInputAction,
   headerCheckedFilmsAction,
 } from "../../redux/action/headerAction";
+import { fetchSearchInputAction } from "../../redux/action/sectionFilmsAction";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ const Header = () => {
   //событие для определения нажатия на  Enter в input (для поиска фильмов )
   const getFilmsEnterInput = async (e) => {
     if (e.code === "Enter") {
+      dispatch(fetchSearchInputAction(inputValue));
       dispatch(headerCheckedFilmsAction(true));
       navigate("/FilmsSearchInput");
       if (!inputValue) {
