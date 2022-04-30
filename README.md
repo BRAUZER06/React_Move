@@ -19,14 +19,13 @@ Material UI / Sass / R-icons / classnames
 <br>
 
 
-## Фотографии проекта:
+<!-- ## Фотографии проекта:
 ![](http://joxi.ru/KAxZLMVHVYG1lm) <br> </br>
 
 ![](http://joxi.ru/v290py4t49Kpzm) 
 
 ![](http://joxi.ru/823No8bTzMQ8ym)
-
-![](http://joxi.ru/zANLQLMt197o0m.png)
+ -->
 
 
 
